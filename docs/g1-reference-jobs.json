@@ -197,9 +197,15 @@
         "no text or collage",
         "hands/face anatomically realistic"
       ],
-      "status": "not-accepted",
-      "skipGeneration": false,
-      "assetInRepository": false
+      "status": "user-approved-reference-locked",
+      "skipGeneration": true,
+      "assetInRepository": false,
+      "userApprovedFace": true,
+      "approvedOriginalSHA256": "acbd100702a6c44f136910a066c59beba161c7c931a0570a57a699f78c025a12",
+      "lockedReferenceDescription": "User-approved photorealistic G1 image '따뜻한_미소의_젊은_과학자.png'. Korean woman around age 26, fine light-gray thin rectangular metal glasses; narrow expressive smiling eyes; softly oval face and a warm open natural smile; faint freckles on nose; straight dark hair tied in a low ponytail, natural loose face-framing wisps; realistic natural skin; slate blue button shirt and off-white slightly worn lab coat. Exact image pixel identity is authoritative for face, glasses, hair and expression. Never create an alternative face.",
+      "approvedSource": "따뜻한_미소의_젊은_과학자.png (user-approved in this conversation; NOT YET archived to repository)",
+      "assetArchiveStatus": "pending-archive",
+      "reviewNote": "This image, not the user's separate casual full-body reference, is the sole facial identity authority."
     },
     {
       "id": "nagyeong-full",
@@ -209,7 +215,7 @@
       "path": "assets/characters/nagyeong-full.webp",
       "aspectRatio": "2:3",
       "referenceImage": "assets/characters/nagyeong-face.webp",
-      "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 이나경 (age 26, 감염 분석 연구원). Korean woman age 26, softly rounded oval facial silhouette with small chin, attentive slightly wide dark eyes behind slender rectangular metal eyeglass frames, straight neat black hair tied low with wispy bangs, cool light complexion with realistic mild undereye shadows and subtle freckles over the nose, narrow delicate frame and practical posture. A thoughtful analytical virology researcher. Costume: off-white lived-in laboratory coat worn over desaturated gray-blue button shirt, black utility trousers, modest flat sneakers, small lab notebook clipped to belt, disposable gloves tucked into coat pocket, no name badge lettering Expression: cautious observant concentration and slightly guarded empathy. Distinguishing signature: thin rectangular glasses, neat low tied black hair, wispy bangs, pale lab coat and slim frame.\nIMAGE EDIT with the attached 이나경 portrait as the single authoritative identity source. Use EXACT same fictional woman's facial identity, haircut, eyebrow / scar / mole geometry, age and complexion; never invent a new lookalike. Full body from top of head to both boots clearly visible, hands and shoes fully inside frame, relaxed grounded standing position: holding unmarked laboratory notebook close to torso, balanced reserved stance. Medium-to-long shot of credible survival outfit in neutral gray-blue photo studio, realistic lens and full-body anatomy. Vertical 2:3 composition, one person. No extra image, no captions, no poster.",
+      "prompt": "LAST SIGNAL / G1 / NAGYEONG-FULL — PHOTOREALISTIC IDENTITY-PRESERVING FULL-BODY PHOTOGRAPH, EXACTLY ONE PERSON, VERTICAL 2:3.\n\nPRIMARY/ONLY IMAGE INPUT: the USER-APPROVED \"따뜻한_미소의_젊은_과학자.png\" FACE PORTRAIT (SHA256 acbd100702a6c44f136910a066c59beba161c7c931a0570a57a699f78c025a12). This is non-negotiable: reproduce the EXACT SAME fictional Korean woman, age 26, with the same softly oval face, warm smiling eyes, natural teeth and smile, pale silver thin rectangular metal-frame GLASSES, faint nose freckles, dark eyebrows, realistic skin texture, straight DARK HAIR TIED INTO A LOW PONYTAIL with loose wisps. Do not remove the glasses or change to a different face.\n\nSECONDARY BODY GUIDANCE (text only; DO NOT FEED THE CASUAL FULL-LENGTH PHOTO TO THE IMAGE EDIT MODEL): natural realistic young-adult woman proportions, balanced relaxed standing posture, head to both complete shoes clearly visible, two arms/hands anatomically correct and fully in frame. The user's casual reference is guidance for silhouette and full-body framing ONLY, never for face, hair, costume, shoes, pose or setting.\n\nCOSTUME — OVERRIDE THE CASUAL PHOTO COMPLETELY: an off-white slightly weathered laboratory coat over a buttoned desaturated slate-blue collared shirt; straight BLACK UTILITY TROUSERS covering the legs to ankles; simple practical flat light gray sneakers; lab notebook in one hand or clipped discreetly to belt. Practical outbreak infection analyst in a grounded Korean survival thriller, modest documentary styling. The coat silhouette, long trousers and sneakers MUST ALL BE VISIBLE.\n\nSETTING: one single full-length 50mm documentary-casting photograph on a neutral cool gray-blue studio background with soft directional diffused light; real natural skin pores, true-to-life details, minor fabric wear, no beauty filters, 2:3 vertical. Subject occupies frame from full hair down to shoe soles, enough margin to avoid cropping. Relaxed grounded standing position, attentive gentle smile toward camera. No logos, writing, subtitles, nameplates, posters, multiple panels, two-photo diptychs, other people.\n\nEXPLICIT NEGATIVE CONSTRAINTS — reject the render outright if ANY appear:\n- lavender/lilac V-neck ruched crop top, fitted purple T-shirt, bare waist, gray RUCHED MINI SKIRT, bare thighs, fashion outfit\n- cream bow-decorated loafers, pumps, heels, fashion shoes\n- long loose flowing WAVY hair hanging over the chest, loose fashion-model hair\n- MISSING thin rectangular glasses, newly invented celebrity/model face, copied face from the casual reference, no lab coat, no black long pants\n- hands hidden behind the back (both hands should be visible and anatomically plausible)\n- collage, text, labels, character sheet, anime or AI illustration\n\nFACIAL CONSISTENCY WITH APPROVED GLASSES HEADSHOT MUST OVERRIDE EVERYTHING ELSE. Produce ONE 2:3 single original photographic frame, NOT a variation of prior rejected lilac-shirt gray-mini-skirt images.",
       "review": [
         "compare face vs accepted face photo",
         "same actor, age, hair and distinguishing features",
@@ -220,7 +226,33 @@
       ],
       "status": "not-accepted",
       "skipGeneration": false,
-      "assetInRepository": false
+      "assetInRepository": false,
+      "referencePriority": [
+        "1) APPROVED NAGYEONG FACE PHOTO (sole source of facial identity, glasses, hairstyle and expression)",
+        "2) user-supplied casual full-length photo: neutral body proportions / camera framing ONLY; NEVER copy appearance or clothes",
+        "3) scene/wardrobe prompt: practical outbreak-researcher clothing, no fashion look"
+      ],
+      "generationMode": "image-to-image; USE approved nagyeong-face ONLY as image input, NOT uploaded casual full-length photo. Convert casual shot guidance into body-proportion TEXT ONLY. Face image must be physically supplied, not merely verbally described.",
+      "acceptance": {
+        "singleImage": true,
+        "aspectRatio": "2:3",
+        "mustMatchApprovedNagyeongFace": true,
+        "glassesVisible": true,
+        "lowPonytail": true,
+        "labCoat": true,
+        "slateBlueShirt": true,
+        "blackLongPants": true,
+        "flatSneakers": true,
+        "bothShoesInFrame": true,
+        "bothHandsInFrame": true,
+        "noCasualLavenderOutfit": true,
+        "noGrayMiniSkirt": true,
+        "noLongLooseWavyHair": true,
+        "noBowLoafers": true,
+        "noTextOrCollage": true,
+        "manualVisualApprovalRequired": true
+      },
+      "rejectedAttemptPattern": "Repeated generator outputs copied the casual body reference (lavender top, gray mini skirt, bow flats, loose wavy hair, no glasses), so do NOT reuse it as an input image; only approved scientist face image may be supplied."
     }
   ],
   "approvedVisualLock": {
@@ -241,7 +273,7 @@
     "sceneAssetsMustDifferInPoseLocationAndAction": true
   },
   "productionStatus": {
-    "approvedReferenceCount": 4,
+    "approvedReferenceCount": 5,
     "targetReferenceCount": 8,
     "gameAssetsCommitted": 0,
     "independentlyNewAcceptedThisTurn": 0,
@@ -251,6 +283,7 @@
     "webpReconstructionVerifiedLocally": true,
     "archivePath": "g1/source/approved-reference-webp.json",
     "reconstructionCommand": "node scripts/materialize-g1.mjs",
-    "note": "Four user-approved derived WebP bytes are stored as Base64 in GitHub and must be materialized before running scripts/validate-g1.mjs; remaining four images are not yet accepted."
+    "note": "5 user-approved photographs, 4 reconstructable in repository and 1 nagyeong face approved in conversation but still awaiting archive. Remaining three full-body shots (seoa, soyeon, nagyeong) are not accepted.",
+    "pendingReferenceCount": 3
   }
 }
