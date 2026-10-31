@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "project": "LAST SIGNAL",
+  "release": "V4 visual redesign",
+  "policy": {
+    "style": "photorealistic live-action Korean survival drama, natural facial features and skin detail, cinematic grounded lighting",
+    "negative": "anime, illustration, CGI-looking skin, beauty-filter, same-face characters, extra limbs or fingers, corrupted hands, text, captions, speech balloons, labels, logos, watermark",
+    "language": "ko",
+    "format": "webp",
+    "sceneAspectRatio": "16:9",
+    "runtimeAI": false,
+    "playerFaceVisible": false
+  },
+  "characters": {
+    "seoa": {
+      "name": "윤서아",
+      "age": 32,
+      "face": "assets/characters/seoa-face.webp",
+      "full": "assets/characters/seoa-full.webp"
+    },
+    "jiyu": {
+      "name": "한지유",
+      "age": 34,
+      "face": "assets/characters/jiyu-face.webp",
+      "full": "assets/characters/jiyu-full.webp"
+    },
+    "soyeon": {
+      "name": "박소연",
+      "age": 30,
+      "face": "assets/characters/soyeon-face.webp",
+      "full": "assets/characters/soyeon-full.webp"
+    },
+    "nagyeong": {
+      "name": "이나경",
+      "age": 26,
+      "face": "assets/characters/nagyeong-face.webp",
+      "full": "assets/characters/nagyeong-full.webp"
+    }
+  },
+  "cover": "assets/cover/intro-v4.webp",
+  "scenes": [
+    {
+      "id": "p0",
+      "title": "전국 긴급 속보",
+      "cast": [],
+      "still": "assets/scenes/p0.webp",
+      "brief": "재난 첫날, 전원이 끊겨 가는 실내 TV와 창밖 군용 차량의 불안한 모습. TV 화면의 글자는 화면에 넣지 말고 방송 자막은 UI에서 처리",
+      "framing": "wide interior, TV foreground, wet street background"
+    },
+    {
+      "id": "p1",
+      "title": "침묵한 도시",
+      "cast": [],
+      "still": "assets/scenes/p1.webp",
+      "brief": "비틀린 버스 정류장과 멈춘 차들 사이로 멀리 비틀거리며 걷는 감염자가 한 명 보인다",
+      "framing": "wide abandoned street, long lens"
+    },
+    {
+      "id": "p2",
+      "title": "뒤틀린 계단",
+      "cast": [
+        "seoa"
+      ],
+      "still": "assets/scenes/p2.webp",
+      "brief": "낡은 상가 3층 계단, 먼지와 깨진 유리 너머에서 윤서아의 손전등 빛이 갑자기 카메라를 겨눈다",
+      "framing": "POV staircase, strong flashlight beam"
+    },
+    {
+      "id": "p3",
+      "title": "윤서아",
+      "cast": [
+        "seoa"
+      ],
+      "still": "assets/scenes/p3.webp",
+      "motion": "assets/motion/p3.mp4",
+      "brief": "윤서아가 3층 벽 뒤에서 조심스럽게 나오며 손전등을 낮추고 플레이어의 상처를 확인한다",
+      "framing": "medium close-up, handheld, tense"
+    },
+    {
+      "id": "c1a",
+      "title": "깨진 약국",
+      "cast": [
+        "seoa"
+      ],
+      "still": "assets/scenes/c1a.webp",
+      "motion": "assets/motion/c1a.mp4",
+      "brief": "윤서아가 약국에서 구급상자를 챙기는 동안 유리창 바깥 감염자 손이 보인다",
+      "framing": "medium action shot, medicine shelves, window"
+    },
+    {
+      "id": "c1b",
+      "title": "차량 사이의 틈",
+      "cast": [
+        "seoa"
+      ],
+      "still": "assets/scenes/c1b.webp",
+      "brief": "노을의 폐쇄 도로에서 서아가 플레이어를 제지하고 차량 사이로 군인 감염자의 수상한 움직임을 관찰한다",
+      "framing": "over-the-shoulder, dusk street"
+    },
+    {
+      "id": "c1c",
+      "title": "지하 주차장의 울림",
+      "cast": [
+        "seoa"
+      ],
+      "still": "assets/scenes/c1c.webp",
+      "brief": "지하 2층 주차장에 남은 작은 손전등이 깜빡이고 서아가 구조 요청 방향을 듣는다",
+      "framing": "wide low angle parking structure"
+    },
+    {
+      "id": "c1d",
+      "title": "밤을 버틸 곳",
+      "cast": [
+        "seoa"
+      ],
+      "still": "assets/scenes/c1d.webp",
+      "brief": "옥상 비닐 천막 옆에서 서아가 손목 붕대를 감으며 멀리 켜진 도시 불빛을 본다",
+      "framing": "medium two-thirds, rooftop dusk"
+    },
+    {
+      "id": "c1e",
+      "title": "정전된 라디오",
+      "cast": [
+        "seoa"
+      ],
+      "still": "assets/scenes/c1e.webp",
+      "brief": "새벽 네 시 옥상, 윤서아가 낡은 라디오의 긴급 주파수에 귀 기울인다",
+      "framing": "close hands on radio, seoa profile, dawn blue"
+    },
+    {
+      "id": "c2a",
+      "title": "이름 없는 거래자",
+      "cast": [
+        "jiyu"
+      ],
+      "still": "assets/scenes/c2a.webp",
+      "motion": "assets/motion/c2a.mp4",
+      "brief": "막힌 지하철 출입구 철문 앞, 낡은 가죽재킷을 입은 한지유가 무전기를 잠그고 기다린다",
+      "framing": "low angle medium shot, early morning"
+    },
+    {
+      "id": "c2b",
+      "title": "가려진 정보",
+      "cast": [
+        "jiyu"
+      ],
+      "still": "assets/scenes/c2b.webp",
+      "brief": "지하철 통제실에서 한지유가 붉은 선으로 표시된 도시 지도를 가리키며 상대를 경계한다. 지도에는 판독할 수 있는 문구를 넣지 않는다",
+      "framing": "over-the-shoulder map room"
+    },
+    {
+      "id": "c2c",
+      "title": "물자 창고",
+      "cast": [
+        "seoa",
+        "jiyu"
+      ],
+      "still": "assets/scenes/c2c.webp",
+      "brief": "어두운 물류 창고에서 서아는 철문을 붙들고 지유는 선반에 놓인 보급품을 살핀다",
+      "framing": "wide environmental two-person standoff"
+    },
+    {
+      "id": "c2d",
+      "title": "세 사람이 지키는 약속",
+      "cast": [
+        "seoa",
+        "jiyu"
+      ],
+      "still": "assets/scenes/c2d.webp",
+      "brief": "발목까지 물이 차오른 배수로에서 지유가 낡은 무전기를 꺼내며 서아가 후방을 감시한다",
+      "framing": "cinematic medium shot, wet tunnel"
+    },
+    {
+      "id": "c2e",
+      "title": "닫힌 철문",
+      "cast": [],
+      "still": "assets/scenes/c2e.webp",
+      "brief": "무인 감시탑과 콘크리트 장벽으로 둘러싸인 대피구역 철문, 불안하게 점멸하는 적색 경고등",
+      "framing": "wide exterior at night, no legible text"
+    },
+    {
+      "id": "c3a",
+      "title": "무음 구역",
+      "cast": [],
+      "still": "assets/scenes/c3a.webp",
+      "brief": "텅 빈 대피구역 접수동, 정돈된 침대와 따뜻한 종이컵, 멀리 연구동으로 향하는 어두운 복도",
+      "framing": "wide desaturated abandoned clinic"
+    },
+    {
+      "id": "c3b",
+      "title": "연구원 이나경",
+      "cast": [
+        "nagyeong"
+      ],
+      "still": "assets/scenes/c3b.webp",
+      "motion": "assets/motion/c3b.mp4",
+      "brief": "깨진 연구실 안경 쓴 나경이 연구 수첩을 끌어안고 플레이어 팔의 상처를 신중하게 살핀다",
+      "framing": "medium portrait with lab environment"
+    },
+    {
+      "id": "c3c",
+      "title": "검은 봉투",
+      "cast": [
+        "nagyeong"
+      ],
+      "still": "assets/scenes/c3c.webp",
+      "brief": "이나경이 냉장 보관실에서 밀봉 검은 봉투와 혈액 검사 자료를 조심스럽게 꺼낸다",
+      "framing": "close-up gloved hands and sealed pouch"
+    },
+    {
+      "id": "c3d",
+      "title": "회의실에 남은 목소리",
+      "cast": [
+        "jiyu"
+      ],
+      "still": "assets/scenes/c3d.webp",
+      "brief": "폐허 회의실에서 지유가 낡은 녹음기의 재생 버튼을 누르고 벽의 그림자를 돌아본다",
+      "framing": "low-key medium shot, recording device"
+    },
+    {
+      "id": "c3e",
+      "title": "철벽 너머의 구조 요청",
+      "cast": [
+        "soyeon"
+      ],
+      "still": "assets/scenes/c3e.webp",
+      "brief": "경보가 울리는 기계실 출구에서 방화문 너머 힘껏 두드리는 소연의 실루엣과 구조 도끼가 보인다",
+      "framing": "dramatic fire door, silhouette"
+    },
+    {
+      "id": "c4a",
+      "title": "박소연",
+      "cast": [
+        "soyeon"
+      ],
+      "still": "assets/scenes/c4a.webp",
+      "motion": "assets/motion/c4a.mp4",
+      "brief": "박소연이 방화문을 열고 두 민간인과 아이를 안전하게 이끌며 허리에 소방 재킷이 묶여 있다",
+      "framing": "dynamic wide action, indoor smoke"
+    },
+    {
+      "id": "c4b",
+      "title": "흔들리는 복도",
+      "cast": [
+        "soyeon"
+      ],
+      "still": "assets/scenes/c4b.webp",
+      "brief": "스프링클러 물이 터지는 지하 복도에서 소연이 무거운 철제 의자를 밀어 감염자 진입을 막는다",
+      "framing": "dynamic side tracking still, flooded corridor"
+    },
+    {
+      "id": "c4c",
+      "title": "누구를 남길 것인가",
+      "cast": [
+        "seoa",
+        "jiyu",
+        "soyeon",
+        "nagyeong"
+      ],
+      "still": "assets/scenes/c4c.webp",
+      "brief": "제어실의 붉은 비상 조명 아래 4명이 한 번뿐인 배터리 사용을 놓고 긴장 속에 서로를 바라본다",
+      "framing": "four-person group tableau, clearly distinct faces"
+    },
+    {
+      "id": "c4d",
+      "title": "마지막 도약",
+      "cast": [
+        "soyeon",
+        "seoa"
+      ],
+      "still": "assets/scenes/c4d.webp",
+      "motion": "assets/motion/c4d.mp4",
+      "brief": "소연이 무너지는 출입구의 지지대를 들어 올리고 서아는 민간인들을 밖으로 안내한다",
+      "framing": "dynamic wide, dust and concrete"
+    },
+    {
+      "id": "c4e",
+      "title": "다섯 번째 아침",
+      "cast": [
+        "seoa",
+        "jiyu",
+        "soyeon",
+        "nagyeong"
+      ],
+      "still": "assets/scenes/c4e.webp",
+      "brief": "새벽 강변 무너진 교량 아래 서아가 불을 피우고 소연은 경계하며 지유는 무전기, 나경은 수첩을 붙든다",
+      "framing": "intimate group wide, morning mist"
+    },
+    {
+      "id": "c5a",
+      "title": "마지막 송신탑",
+      "cast": [],
+      "still": "assets/scenes/c5a.webp",
+      "brief": "서쪽 서울 해질녘 하늘을 가르는 높은 비상 송신탑과 기지의 버려진 의료 텐트",
+      "framing": "ultra wide dusk tower exterior"
+    },
+    {
+      "id": "c5b",
+      "title": "세 개의 주파수",
+      "cast": [
+        "jiyu"
+      ],
+      "still": "assets/scenes/c5b.webp",
+      "brief": "한지유가 상층 통신실의 세 개 주파수 선택기 앞에서 떨리는 손으로 민간 채널을 고른다",
+      "framing": "close medium, radio console"
+    },
+    {
+      "id": "c5c",
+      "title": "탑 위의 밤",
+      "cast": [
+        "seoa",
+        "jiyu",
+        "soyeon",
+        "nagyeong"
+      ],
+      "still": "assets/scenes/c5c.webp",
+      "motion": "assets/motion/c5c.mp4",
+      "brief": "탑 옥상 야간, 서아는 붕대, 지유는 무전기, 소연은 출입문, 나경은 수첩을 각각 맡으며 위기를 준비한다",
+      "framing": "four-person cross-coverage wideshot"
+    },
+    {
+      "id": "c5final",
+      "title": "마지막 교신",
+      "cast": [
+        "seoa",
+        "jiyu",
+        "soyeon",
+        "nagyeong"
+      ],
+      "still": "assets/scenes/c5final.webp",
+      "motion": "assets/motion/c5final.mp4",
+      "brief": "송신탑 최상층 붉은 송신등이 켜지고 네 동료가 거센 바람 속에서 신호를 바라본다",
+      "framing": "cinematic emotional group still, red signal light"
+    },
+    {
+      "id": "e_rescue",
+      "title": "구조 신호",
+      "cast": [
+        "seoa"
+      ],
+      "still": "assets/scenes/e_rescue.webp",
+      "brief": "동트는 송신탑에서 헬리콥터가 나타나고 서아가 무전기를 내려놓으며 안도한다",
+      "framing": "wide rescue sky, seoa foreground"
+    },
+    {
+      "id": "e_truth",
+      "title": "진실의 방송",
+      "cast": [
+        "nagyeong"
+      ],
+      "still": "assets/scenes/e_truth.webp",
+      "brief": "희미한 새벽빛, 나경이 방송 장치를 통해 진실을 전달한 뒤 안도하며 미소 짓고 생존자들이 라디오 주변에 모인다",
+      "framing": "medium character emotion, radio equipment"
+    },
+    {
+      "id": "e_community",
+      "title": "우리의 대피소",
+      "cast": [
+        "seoa",
+        "jiyu",
+        "soyeon",
+        "nagyeong"
+      ],
+      "still": "assets/scenes/e_community.webp",
+      "brief": "강변 생존자 마을, 서아 진료·지유 길 안내·소연 수리·나경 수질검사를 한 화면의 서로 다른 영역에서 수행한다",
+      "framing": "wide optimistic settlement tableau"
+    },
+    {
+      "id": "e_solo",
+      "title": "한 사람의 기록",
+      "cast": [],
+      "still": "assets/scenes/e_solo.webp",
+      "brief": "텅 빈 폐허 서울에서 1인칭 시점 손에 쥔 라디오에 낯선 구조 신호가 들어온다. 얼굴 노출 없음",
+      "framing": "first-person wide ruined city, close radio"
+    },
+    {
+      "id": "e_dead",
+      "title": "끝내 닿지 못한 신호",
+      "cast": [],
+      "still": "assets/scenes/e_dead.webp",
+      "brief": "밤의 폐허 건물 바닥에 놓인 꺼져가는 손전등과 떨어진 무전기, 멀리 흐릿한 송신탑 불빛",
+      "framing": "somber close objects, no visible corpse"
+    }
+  ]
+}
