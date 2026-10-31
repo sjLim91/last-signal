@@ -1,0 +1,36 @@
+name: G1 approved reference archive verification
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'g1/source/approved-reference-webp.json'
+      - 'scripts/materialize-g1.mjs'
+      - 'docs/g1-reference-jobs.json'
+      - '.github/workflows/g1-reference-archive.yml'
+  pull_request:
+    paths:
+      - 'g1/source/approved-reference-webp.json'
+      - 'scripts/materialize-g1.mjs'
+      - 'docs/g1-reference-jobs.json'
+      - '.github/workflows/g1-reference-archive.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-four-approved-references:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize 4 individually-approved WebP photos
+        run: node scripts/materialize-g1.mjs
+      - name: Verify the reconstructed assets byte-for-byte
+        run: node scripts/materialize-g1.mjs --verify
+      - name: Ensure exactly 4 accepted assets and 4 pending
+        run: |
+          node scripts/materialize-g1.mjs --verify > /tmp/g1-check.json
+          node -e "const r=require('/tmp/g1-check.json');if(r.approved!==4||r.pending.length!==4||r.assets.length!==4)process.exit(1)"
