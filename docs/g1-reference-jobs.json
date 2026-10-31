@@ -25,7 +25,7 @@
       "type": "face",
       "path": "assets/characters/seoa-face.webp",
       "aspectRatio": "3:4",
-      "referenceImage": null,
+      "referenceImage": "assets/characters/seoa-full.webp",
       "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 윤서아 (age 32, 전직 구조대원). Korean woman age 32, strong angular heart-shaped face, defined straight eyebrows, alert dark brown slightly hooded eyes, tiny mole on left cheekbone, medium-light olive toned skin with natural fine pores, short naturally straight black jaw-length bob haircut tucked behind the right ear, broad athletic shoulders and sturdy practical build. Not glamorous, visibly experienced emergency rescue worker. Costume: distressed charcoal field rescue jacket, faded olive thermal shirt, black work trousers and used rescue boots, red emergency medical backpack, first aid gloves, no conspicuous graphics; no uniform insignia text Expression: contained fatigue and calm, protective determined gaze. Distinguishing signature: angular face and short straight bob, mole on left cheekbone, charcoal-olive rescue layers.\nProfessional documentary casting headshot portrait framed mid torso through hair, entire face in focus, almost frontal camera orientation with eyes toward camera, shoulders clearly visible and consistent costume details. Neither action photo nor poster. ONE IMAGE of ONE PERSON only.",
       "review": [
         "one original-looking actor",
@@ -37,12 +37,25 @@
       ],
       "status": "user-approved-reference-locked",
       "skipGeneration": true,
-      "approvedOriginalSHA256": "500480fcc63ba420dc1e098669eea31ab47ec815de6b6f81932d90303d3162bb",
+      "approvedOriginalSHA256": "59f9a31b49dedd318611ac3707e80027910f8f1e410c163965d0ea2db8d80c5b",
       "assetInRepository": false,
-      "archiveSource": "g1/source/approved-reference-webp.json",
+      "archiveSource": "G1_SEOA_APPROVED_WEBP_ARCHIVE.json — prepared in conversation, GitHub upload pending",
       "archiveEncoding": "base64",
       "recoverableBy": "node scripts/materialize-g1.mjs",
-      "repositoryBinaryPresent": false
+      "repositoryBinaryPresent": false,
+      "previousApprovedOriginalSHA256": "500480fcc63ba420dc1e098669eea31ab47ec815de6b6f81932d90303d3162bb",
+      "previousApprovedSource": "last_signal_yoon_seoa_new_portrait.png — superseded historical reference",
+      "previousApprovedArchive": "g1/source/approved-reference-webp.json",
+      "approvedWebpSHA256": "85e1c291791ba53191a519001dec3bf0ac975a1539859dbcc1bfe6382f8e043b",
+      "approvedSource": "황혼의_구조_지휘관.png",
+      "approvedDimensions": {
+        "width": 1086,
+        "height": 1448
+      },
+      "approvedAspectRatio": "3:4",
+      "userApprovedFace": true,
+      "identityAuthority": "Latest explicitly user-approved photo: short dark bob, dark warm brown eyes, burgundy shirt and tan utility rescue vest with handheld radio at dusk; do not use previous charcoal jacket face.",
+      "approvalNote": "User explicitly confirmed THIS latest burgundy-shirt, tan-vest dusk portrait after rejecting multiple prior images. LOCK and do not regenerate/crop/replace without new approval."
     },
     {
       "id": "seoa-full",
@@ -61,9 +74,20 @@
         "one original-looking actor",
         "no text or collage"
       ],
-      "status": "not-accepted",
-      "skipGeneration": false,
-      "assetInRepository": false
+      "status": "user-approved-reference-locked",
+      "skipGeneration": true,
+      "assetInRepository": false,
+      "userApprovedFull": true,
+      "approvedOriginalSHA256": "5025bc844119c7434d4cd7da491b3281328527df5defada7475dc39fe28febaa",
+      "approvedWebpSHA256": "f0f8038612bc7a02ef9592ef02d40a48faa8aeb15ec6c790cfdde3ec8d56f1fa",
+      "approvedSource": "a_crisp_high_detail_full_body_portrait_scene_in.png",
+      "approvedDimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "approvedAspectRatio": "2:3",
+      "approvalNote": "User approved short-bob black-tactical-jacket and olive tank full body in industrial space, backpack, black cargo trousers and black boots; DO NOT replace or modify. Headshot approved separately may use different rescue attire.",
+      "archiveSource": "G1_SEOA_APPROVED_WEBP_ARCHIVE.json — prepared in conversation, GitHub upload pending"
     },
     {
       "id": "jiyu-face",
@@ -287,7 +311,7 @@
     "sceneAssetsMustDifferInPoseLocationAndAction": true
   },
   "productionStatus": {
-    "approvedReferenceCount": 6,
+    "approvedReferenceCount": 7,
     "targetReferenceCount": 8,
     "gameAssetsCommitted": 0,
     "independentlyNewAcceptedThisTurn": 1,
@@ -298,7 +322,15 @@
     "archivePath": "g1/source/approved-reference-webp.json",
     "reconstructionCommand": "node scripts/materialize-g1.mjs",
     "note": "Six user-approved photos, four reference WebP archives in GitHub. Both Nagyeong face and full-length are explicitly approved, with known original image hashes. Nagyeong original image binaries are in conversation/container, not yet in repository. Only seoa-full and soyeon-full remain unaccepted.",
-    "pendingReferenceCount": 2,
-    "nagyeongFullApproved": true
+    "pendingReferenceCount": 1,
+    "nagyeongFullApproved": true,
+    "seoaFaceApproved": true,
+    "seoaFullApproved": true,
+    "remainingUnapproved": [
+      "soyeon-full"
+    ],
+    "seoaUserApprovedPngsAvailableInChat": true,
+    "seoaWebpArchivePreparedLocally": true,
+    "notes": "G1 7/8 user-approved. Current Seoa face (burgundy shirt, tan vest dusk) supersedes older face stored in GitHub historical archive. Current Seoa full body original user-approved and unchanged. Two current Seoa WebP binaries are prepared locally and downloadable as a ZIP; NOT yet stored as GitHub binaries. Only Soyeon full is pending."
   }
 }

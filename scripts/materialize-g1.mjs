@@ -28,7 +28,8 @@ for(const a of assets){
  seen.add(a.id);
  const b=Buffer.from(a.base64,'base64'),hash=crypto.createHash('sha256').update(b).digest('hex'),size=webpSize(b);
  if(hash!==a.sha256||b.length!==a.byteLength||!size||size[0]!==dim[0]||size[1]!==dim[1]||a.width!==dim[0]||a.height!==dim[1])throw Error('G1 integrity failure: '+a.id);
- const dest=path.join(root,'assets/characters',a.id+'.webp');
+ // The legacy seoa-face is superseded. Keep it as history; NEVER install it at the active game-asset path.
+ const dest=a.id==='seoa-face' ? path.join(root,'g1/history/seoa-face-20261031.webp') : path.join(root,'assets/characters',a.id+'.webp');
  if(fs.existsSync(dest)){
   const current=crypto.createHash('sha256').update(fs.readFileSync(dest)).digest('hex');
   if(current!==hash)throw Error('Refusing to overwrite changed file '+dest);
@@ -37,4 +38,4 @@ for(const a of assets){
  result.push({id:a.id,sha256:hash,bytes:b.length,width:size[0],height:size[1]});
 }
 if(seen.size!==expected.size)throw Error('Four reference identities required');
-console.log(JSON.stringify({status:verify?'verified':dryRun?'dry-run':'materialized',approved:result.length,pending:['seoa-full','soyeon-full','nagyeong-face','nagyeong-full'],assets:result},null,2));
+console.log(JSON.stringify({status:verify?'verified':dryRun?'dry-run':'materialized',approved:result.length,pendingUnapproved:['soyeon-full'],pendingArchive:['seoa-face','seoa-full','nagyeong-face','nagyeong-full'],legacySeoaFaceRestoredToHistoryOnly:true,assets:result},null,2));
