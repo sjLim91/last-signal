@@ -1,0 +1,166 @@
+{
+  "project": "LAST SIGNAL",
+  "phase": "G1",
+  "status": "generation_pending",
+  "revision": "2026-11-01",
+  "purpose": "eight individual photographic actor reference shots, 4 unique identities x face and full body",
+  "generativePolicy": {
+    "mustBeIndividual": true,
+    "mustMatchCharacterId": true,
+    "noText": true,
+    "noCollage": true,
+    "noRetouching": true,
+    "onePersonPerImage": true,
+    "format": "webp",
+    "faceAspect": "3:4",
+    "fullAspect": "2:3",
+    "generationOrder": "create face first then use the exact accepted face as image reference for full",
+    "qa": "manual visual review required in addition to automated file checker"
+  },
+  "jobs": [
+    {
+      "id": "seoa-face",
+      "characterId": "seoa",
+      "characterName": "윤서아",
+      "type": "face",
+      "path": "assets/characters/seoa-face.webp",
+      "aspectRatio": "3:4",
+      "referenceImage": null,
+      "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 윤서아 (age 32, 전직 구조대원). Korean woman age 32, strong angular heart-shaped face, defined straight eyebrows, alert dark brown slightly hooded eyes, tiny mole on left cheekbone, medium-light olive toned skin with natural fine pores, short naturally straight black jaw-length bob haircut tucked behind the right ear, broad athletic shoulders and sturdy practical build. Not glamorous, visibly experienced emergency rescue worker. Costume: distressed charcoal field rescue jacket, faded olive thermal shirt, black work trousers and used rescue boots, red emergency medical backpack, first aid gloves, no conspicuous graphics; no uniform insignia text Expression: contained fatigue and calm, protective determined gaze. Distinguishing signature: angular face and short straight bob, mole on left cheekbone, charcoal-olive rescue layers.\nProfessional documentary casting headshot portrait framed mid torso through hair, entire face in focus, almost frontal camera orientation with eyes toward camera, shoulders clearly visible and consistent costume details. Neither action photo nor poster. ONE IMAGE of ONE PERSON only.",
+      "review": [
+        "one original-looking actor",
+        "face clear and age-plausible",
+        "distinguishing features match biography",
+        "3:4 portrait composition",
+        "no text or collage",
+        "hands/face anatomically realistic"
+      ]
+    },
+    {
+      "id": "seoa-full",
+      "characterId": "seoa",
+      "characterName": "윤서아",
+      "type": "full",
+      "path": "assets/characters/seoa-full.webp",
+      "aspectRatio": "2:3",
+      "referenceImage": "assets/characters/seoa-face.webp",
+      "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 윤서아 (age 32, 전직 구조대원). Korean woman age 32, strong angular heart-shaped face, defined straight eyebrows, alert dark brown slightly hooded eyes, tiny mole on left cheekbone, medium-light olive toned skin with natural fine pores, short naturally straight black jaw-length bob haircut tucked behind the right ear, broad athletic shoulders and sturdy practical build. Not glamorous, visibly experienced emergency rescue worker. Costume: distressed charcoal field rescue jacket, faded olive thermal shirt, black work trousers and used rescue boots, red emergency medical backpack, first aid gloves, no conspicuous graphics; no uniform insignia text Expression: contained fatigue and calm, protective determined gaze. Distinguishing signature: angular face and short straight bob, mole on left cheekbone, charcoal-olive rescue layers.\nIMAGE EDIT with the attached 윤서아 portrait as the single authoritative identity source. Use EXACT same fictional woman's facial identity, haircut, eyebrow / scar / mole geometry, age and complexion; never invent a new lookalike. Full body from top of head to both boots clearly visible, hands and shoes fully inside frame, relaxed grounded standing position: one shoulder lower from carrying first aid bag, feet grounded in practical stance. Medium-to-long shot of credible survival outfit in neutral gray-blue photo studio, realistic lens and full-body anatomy. Vertical 2:3 composition, one person. No extra image, no captions, no poster.",
+      "review": [
+        "compare face vs accepted face photo",
+        "same actor, age, hair and distinguishing features",
+        "hands, five fingers and both complete feet",
+        "full body fully in frame",
+        "one original-looking actor",
+        "no text or collage"
+      ]
+    },
+    {
+      "id": "jiyu-face",
+      "characterId": "jiyu",
+      "characterName": "한지유",
+      "type": "face",
+      "path": "assets/characters/jiyu-face.webp",
+      "aspectRatio": "3:4",
+      "referenceImage": null,
+      "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 한지유 (age 34, 전직 조사관). Korean woman age 34, long narrow oval facial structure, distinct defined cheekbones and refined but subtly tired features, narrow observant almond-shaped dark brown eyes, slight asymmetrical smile, neutral beige-light skin, loose naturally wavy dark-brown hair reaching below shoulders with a side part. Taller and slender rather than sporty. A seasoned investigator who watches before speaking. Costume: worn espresso-dark leather jacket over slate knit shirt, charcoal straight trousers, practical black ankle boots, slim crossbody bag with small radio and unmarked notebook; quiet civilian survival style Expression: measured skeptical expression with barely-there knowing half-smile. Distinguishing signature: long dark brown waves, narrow oval face, high cheekbones and leather coat.\nProfessional documentary casting headshot portrait framed mid torso through hair, entire face in focus, almost frontal camera orientation with eyes toward camera, shoulders clearly visible and consistent costume details. Neither action photo nor poster. ONE IMAGE of ONE PERSON only.",
+      "review": [
+        "one original-looking actor",
+        "face clear and age-plausible",
+        "distinguishing features match biography",
+        "3:4 portrait composition",
+        "no text or collage",
+        "hands/face anatomically realistic"
+      ]
+    },
+    {
+      "id": "jiyu-full",
+      "characterId": "jiyu",
+      "characterName": "한지유",
+      "type": "full",
+      "path": "assets/characters/jiyu-full.webp",
+      "aspectRatio": "2:3",
+      "referenceImage": "assets/characters/jiyu-face.webp",
+      "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 한지유 (age 34, 전직 조사관). Korean woman age 34, long narrow oval facial structure, distinct defined cheekbones and refined but subtly tired features, narrow observant almond-shaped dark brown eyes, slight asymmetrical smile, neutral beige-light skin, loose naturally wavy dark-brown hair reaching below shoulders with a side part. Taller and slender rather than sporty. A seasoned investigator who watches before speaking. Costume: worn espresso-dark leather jacket over slate knit shirt, charcoal straight trousers, practical black ankle boots, slim crossbody bag with small radio and unmarked notebook; quiet civilian survival style Expression: measured skeptical expression with barely-there knowing half-smile. Distinguishing signature: long dark brown waves, narrow oval face, high cheekbones and leather coat.\nIMAGE EDIT with the attached 한지유 portrait as the single authoritative identity source. Use EXACT same fictional woman's facial identity, haircut, eyebrow / scar / mole geometry, age and complexion; never invent a new lookalike. Full body from top of head to both boots clearly visible, hands and shoes fully inside frame, relaxed grounded standing position: stillness, fingers resting near radio or notebook, weight shifted to one hip. Medium-to-long shot of credible survival outfit in neutral gray-blue photo studio, realistic lens and full-body anatomy. Vertical 2:3 composition, one person. No extra image, no captions, no poster.",
+      "review": [
+        "compare face vs accepted face photo",
+        "same actor, age, hair and distinguishing features",
+        "hands, five fingers and both complete feet",
+        "full body fully in frame",
+        "one original-looking actor",
+        "no text or collage"
+      ]
+    },
+    {
+      "id": "soyeon-face",
+      "characterId": "soyeon",
+      "characterName": "박소연",
+      "type": "face",
+      "path": "assets/characters/soyeon-face.webp",
+      "aspectRatio": "3:4",
+      "referenceImage": null,
+      "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 박소연 (age 30, 전직 소방관). Korean woman age 30, powerful athletic build, broad shoulders, defined arms, square muscular jaw and strong straight nose, short rough cropped deep chestnut-black pixie hair, warm tan skin with lived-in texture, one small visible scar crossing the outer right eyebrow (character-right side). A capable strong former firefighter, not a bodybuilder or fashion model. Costume: weathered dark charcoal fitted work shirt with sleeves rolled, heavy dark firefighter trousers with thin reflective stripes at ankle, firefighter jacket tied firmly around waist, scarred work gloves, utility belt and solid boots, nothing sexualized Expression: unflinching direct challenging stare with restless intensity. Distinguishing signature: prominent athletic frame, short rough cropped hair, small scar right brow, fire gear.\nProfessional documentary casting headshot portrait framed mid torso through hair, entire face in focus, almost frontal camera orientation with eyes toward camera, shoulders clearly visible and consistent costume details. Neither action photo nor poster. ONE IMAGE of ONE PERSON only.",
+      "review": [
+        "one original-looking actor",
+        "face clear and age-plausible",
+        "distinguishing features match biography",
+        "3:4 portrait composition",
+        "no text or collage",
+        "hands/face anatomically realistic"
+      ]
+    },
+    {
+      "id": "soyeon-full",
+      "characterId": "soyeon",
+      "characterName": "박소연",
+      "type": "full",
+      "path": "assets/characters/soyeon-full.webp",
+      "aspectRatio": "2:3",
+      "referenceImage": "assets/characters/soyeon-face.webp",
+      "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 박소연 (age 30, 전직 소방관). Korean woman age 30, powerful athletic build, broad shoulders, defined arms, square muscular jaw and strong straight nose, short rough cropped deep chestnut-black pixie hair, warm tan skin with lived-in texture, one small visible scar crossing the outer right eyebrow (character-right side). A capable strong former firefighter, not a bodybuilder or fashion model. Costume: weathered dark charcoal fitted work shirt with sleeves rolled, heavy dark firefighter trousers with thin reflective stripes at ankle, firefighter jacket tied firmly around waist, scarred work gloves, utility belt and solid boots, nothing sexualized Expression: unflinching direct challenging stare with restless intensity. Distinguishing signature: prominent athletic frame, short rough cropped hair, small scar right brow, fire gear.\nIMAGE EDIT with the attached 박소연 portrait as the single authoritative identity source. Use EXACT same fictional woman's facial identity, haircut, eyebrow / scar / mole geometry, age and complexion; never invent a new lookalike. Full body from top of head to both boots clearly visible, hands and shoes fully inside frame, relaxed grounded standing position: arms naturally tense, sturdy strong stance, shoulders level. Medium-to-long shot of credible survival outfit in neutral gray-blue photo studio, realistic lens and full-body anatomy. Vertical 2:3 composition, one person. No extra image, no captions, no poster.",
+      "review": [
+        "compare face vs accepted face photo",
+        "same actor, age, hair and distinguishing features",
+        "hands, five fingers and both complete feet",
+        "full body fully in frame",
+        "one original-looking actor",
+        "no text or collage"
+      ]
+    },
+    {
+      "id": "nagyeong-face",
+      "characterId": "nagyeong",
+      "characterName": "이나경",
+      "type": "face",
+      "path": "assets/characters/nagyeong-face.webp",
+      "aspectRatio": "3:4",
+      "referenceImage": null,
+      "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 이나경 (age 26, 감염 분석 연구원). Korean woman age 26, softly rounded oval facial silhouette with small chin, attentive slightly wide dark eyes behind slender rectangular metal eyeglass frames, straight neat black hair tied low with wispy bangs, cool light complexion with realistic mild undereye shadows and subtle freckles over the nose, narrow delicate frame and practical posture. A thoughtful analytical virology researcher. Costume: off-white lived-in laboratory coat worn over desaturated gray-blue button shirt, black utility trousers, modest flat sneakers, small lab notebook clipped to belt, disposable gloves tucked into coat pocket, no name badge lettering Expression: cautious observant concentration and slightly guarded empathy. Distinguishing signature: thin rectangular glasses, neat low tied black hair, wispy bangs, pale lab coat and slim frame.\nProfessional documentary casting headshot portrait framed mid torso through hair, entire face in focus, almost frontal camera orientation with eyes toward camera, shoulders clearly visible and consistent costume details. Neither action photo nor poster. ONE IMAGE of ONE PERSON only.",
+      "review": [
+        "one original-looking actor",
+        "face clear and age-plausible",
+        "distinguishing features match biography",
+        "3:4 portrait composition",
+        "no text or collage",
+        "hands/face anatomically realistic"
+      ]
+    },
+    {
+      "id": "nagyeong-full",
+      "characterId": "nagyeong",
+      "characterName": "이나경",
+      "type": "full",
+      "path": "assets/characters/nagyeong-full.webp",
+      "aspectRatio": "2:3",
+      "referenceImage": "assets/characters/nagyeong-face.webp",
+      "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 이나경 (age 26, 감염 분석 연구원). Korean woman age 26, softly rounded oval facial silhouette with small chin, attentive slightly wide dark eyes behind slender rectangular metal eyeglass frames, straight neat black hair tied low with wispy bangs, cool light complexion with realistic mild undereye shadows and subtle freckles over the nose, narrow delicate frame and practical posture. A thoughtful analytical virology researcher. Costume: off-white lived-in laboratory coat worn over desaturated gray-blue button shirt, black utility trousers, modest flat sneakers, small lab notebook clipped to belt, disposable gloves tucked into coat pocket, no name badge lettering Expression: cautious observant concentration and slightly guarded empathy. Distinguishing signature: thin rectangular glasses, neat low tied black hair, wispy bangs, pale lab coat and slim frame.\nIMAGE EDIT with the attached 이나경 portrait as the single authoritative identity source. Use EXACT same fictional woman's facial identity, haircut, eyebrow / scar / mole geometry, age and complexion; never invent a new lookalike. Full body from top of head to both boots clearly visible, hands and shoes fully inside frame, relaxed grounded standing position: holding unmarked laboratory notebook close to torso, balanced reserved stance. Medium-to-long shot of credible survival outfit in neutral gray-blue photo studio, realistic lens and full-body anatomy. Vertical 2:3 composition, one person. No extra image, no captions, no poster.",
+      "review": [
+        "compare face vs accepted face photo",
+        "same actor, age, hair and distinguishing features",
+        "hands, five fingers and both complete feet",
+        "full body fully in frame",
+        "one original-looking actor",
+        "no text or collage"
+      ]
+    }
+  ]
+}
