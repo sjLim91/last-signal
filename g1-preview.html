@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAST SIGNAL · G1 승인 사진</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;padding:28px;font:16px/1.6 system-ui,-apple-system,sans-serif;background:#101721;color:#eef3f8}
+main{max-width:1090px;margin:auto}h1{font-size:clamp(23px,4vw,35px);margin:0 0 6px}p{color:#b5c3d1}
+a{color:#a9d4ff}.summary{border:1px solid #33475c;padding:13px 18px;border-radius:14px;background:#172534}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:20px 0 30px}
+figure{margin:0;background:#1c2b39;border:1px solid #34485b;border-radius:15px;overflow:hidden}
+figure img{display:block;width:100%;aspect-ratio:3/4;object-fit:contain;background:#101820}
+figure.full img{aspect-ratio:2/3}figcaption{padding:12px 16px;font-weight:600}
+small{display:block;color:#abc0d1;font-weight:400;font-size:13px}
+#state{color:#e5be90}footer{color:#96aaba;font-size:13px}
+</style></head><body><main>
+<h1>LAST SIGNAL · G1</h1><p>승인된 배우 레퍼런스 원본에서 복구한 사진입니다. 새 얼굴을 생성하거나 다른 인물로 교체하지 않았습니다.</p>
+<div class="summary"><strong>승인 4 / 전체 8</strong><div>미완료: 윤서아 전신 · 박소연 전신 · 이나경 얼굴 · 이나경 전신</div></div>
+<div id="state" role="status">저장소의 승인 사진을 불러오는 중…</div>
+<section class="gallery" id="gallery" aria-label="G1 approved photos"></section>
+<footer>이미지는 GitHub에 보관된 WebP 원본 데이터를 그대로 표시합니다. 실제 파일 배포와 남은 사진 4장 제작은 별도 작업입니다. <a href="./">게임으로 돌아가기</a></footer>
+<script>
+(async()=>{
+try{
+ const res=await fetch('./g1/source/approved-reference-webp.json',{cache:'no-cache'});
+ if(!res.ok)throw Error('HTTP '+res.status);
+ const json=await res.json();
+ const names={'seoa-face':'윤서아 · 얼굴','jiyu-face':'한지유 · 얼굴','jiyu-full':'한지유 · 전신','soyeon-face':'박소연 · 얼굴'};
+ if(json.project!=='LAST SIGNAL'||json.assets.length!==4)throw Error('승인 목록이 유효하지 않습니다');
+ for(const asset of json.assets){
+  if(!(asset.id in names)||!asset.base64)throw Error('승인 데이터 검증 실패');
+  const figure=document.createElement('figure');if(asset.id.endsWith('-full'))figure.className='full';
+  const img=document.createElement('img');img.loading='lazy';img.alt=names[asset.id];img.src='data:image/webp;base64,'+asset.base64;
+  const caption=document.createElement('figcaption');caption.textContent=names[asset.id];
+  const sub=document.createElement('small');sub.textContent='기존 승인 이미지 · '+asset.width+'×'+asset.height;caption.appendChild(sub);
+  figure.append(img,caption);document.querySelector('#gallery').appendChild(figure);
+ }
+ document.querySelector('#state').textContent='승인된 이미지 4개 로드 완료 (신규 생성 아님)';
+}catch(e){document.querySelector('#state').textContent='불러오기 실패: '+e.message;}
+})();
+</script></main></body></html>
