@@ -205,7 +205,8 @@
       "lockedReferenceDescription": "User-approved photorealistic G1 image '따뜻한_미소의_젊은_과학자.png'. Korean woman around age 26, fine light-gray thin rectangular metal glasses; narrow expressive smiling eyes; softly oval face and a warm open natural smile; faint freckles on nose; straight dark hair tied in a low ponytail, natural loose face-framing wisps; realistic natural skin; slate blue button shirt and off-white slightly worn lab coat. Exact image pixel identity is authoritative for face, glasses, hair and expression. Never create an alternative face.",
       "approvedSource": "따뜻한_미소의_젊은_과학자.png (user-approved in this conversation; NOT YET archived to repository)",
       "assetArchiveStatus": "pending-archive",
-      "reviewNote": "This image, not the user's separate casual full-body reference, is the sole facial identity authority."
+      "reviewNote": "This image, not the user's separate casual full-body reference, is the sole facial identity authority.",
+      "referenceRole": "sole facial identity and glasses authority; do not regenerate"
     },
     {
       "id": "nagyeong-full",
@@ -224,8 +225,8 @@
         "one original-looking actor",
         "no text or collage"
       ],
-      "status": "not-accepted",
-      "skipGeneration": false,
+      "status": "user-approved-reference-locked",
+      "skipGeneration": true,
       "assetInRepository": false,
       "referencePriority": [
         "1) APPROVED NAGYEONG FACE PHOTO (sole source of facial identity, glasses, hairstyle and expression)",
@@ -252,7 +253,20 @@
         "noTextOrCollage": true,
         "manualVisualApprovalRequired": true
       },
-      "rejectedAttemptPattern": "Repeated generator outputs copied the casual body reference (lavender top, gray mini skirt, bow flats, loose wavy hair, no glasses), so do NOT reuse it as an input image; only approved scientist face image may be supplied."
+      "rejectedAttemptPattern": "Repeated generator outputs copied the casual body reference (lavender top, gray mini skirt, bow flats, loose wavy hair, no glasses), so do NOT reuse it as an input image; only approved scientist face image may be supplied.",
+      "userApprovedFull": true,
+      "approvedSource": "a_clean_studio_lit_full_body_portrait_on_a_smoot.png",
+      "approvedOriginalSHA256": "760c034efd9d8a0371c3114c19dd243403d362cbaf29df3276bd97a4d9ec5eb7",
+      "approvedDimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "approvedAspectRatio": "2:3",
+      "originalMediaType": "image/png",
+      "assetArchiveStatus": "approved-in-chat-not-yet-archived",
+      "approvedWebpSHA256": "ac724ca939f7416925638eb55e82da73ef1ae430b8e034c1f0f21fbe6b96c949",
+      "approvalNote": "User explicitly approved the latest single full-length gray-studio image. Do not re-generate or substitute. White/ivory coat, blue-gray shirt, black long trousers, white sneakers, thin metal-frame glasses, low dark ponytail, gray studio. Face must follow separately approved scientist face photo. 1024x1536 (2:3). Original PNG exact SHA-256 locked.",
+      "lockedReferenceDescription": "Approved full-length cinematic studio photo of the same Korean woman as nagyeong-face: thin silver glasses, smiling oval face, dark hair tied low with wisps, off-white lab coat, slate-blue button shirt, full-length black straight trousers, white sneakers, standing on pale-gray seamless backdrop, hands inside coat pockets, fully visible head to shoes. This original PNG is immutable once approved."
     }
   ],
   "approvedVisualLock": {
@@ -273,17 +287,18 @@
     "sceneAssetsMustDifferInPoseLocationAndAction": true
   },
   "productionStatus": {
-    "approvedReferenceCount": 5,
+    "approvedReferenceCount": 6,
     "targetReferenceCount": 8,
     "gameAssetsCommitted": 0,
-    "independentlyNewAcceptedThisTurn": 0,
+    "independentlyNewAcceptedThisTurn": 1,
     "mediaBinaryLocation": "G1 archive in current chat, not GitHub",
     "doNotTreatDocumentationAsGeneration": true,
     "approvedWebpArchivedInGitHub": 4,
     "webpReconstructionVerifiedLocally": true,
     "archivePath": "g1/source/approved-reference-webp.json",
     "reconstructionCommand": "node scripts/materialize-g1.mjs",
-    "note": "5 user-approved photographs, 4 reconstructable in repository and 1 nagyeong face approved in conversation but still awaiting archive. Remaining three full-body shots (seoa, soyeon, nagyeong) are not accepted.",
-    "pendingReferenceCount": 3
+    "note": "Six user-approved photos, four reference WebP archives in GitHub. Both Nagyeong face and full-length are explicitly approved, with known original image hashes. Nagyeong original image binaries are in conversation/container, not yet in repository. Only seoa-full and soyeon-full remain unaccepted.",
+    "pendingReferenceCount": 2,
+    "nagyeongFullApproved": true
   }
 }
