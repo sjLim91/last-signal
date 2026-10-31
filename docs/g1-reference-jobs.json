@@ -34,7 +34,11 @@
         "3:4 portrait composition",
         "no text or collage",
         "hands/face anatomically realistic"
-      ]
+      ],
+      "status": "user-approved-reference-locked",
+      "skipGeneration": true,
+      "approvedOriginalSHA256": "500480fcc63ba420dc1e098669eea31ab47ec815de6b6f81932d90303d3162bb",
+      "assetInRepository": false
     },
     {
       "id": "seoa-full",
@@ -52,7 +56,10 @@
         "full body fully in frame",
         "one original-looking actor",
         "no text or collage"
-      ]
+      ],
+      "status": "not-accepted",
+      "skipGeneration": false,
+      "assetInRepository": false
     },
     {
       "id": "jiyu-face",
@@ -70,7 +77,11 @@
         "3:4 portrait composition",
         "no text or collage",
         "hands/face anatomically realistic"
-      ]
+      ],
+      "status": "user-approved-reference-locked",
+      "skipGeneration": true,
+      "approvedOriginalSHA256": "5b7635048f90097343993280f8f133f9e0c027be5afcc7b719fb1354fc240ca2",
+      "assetInRepository": false
     },
     {
       "id": "jiyu-full",
@@ -88,7 +99,11 @@
         "full body fully in frame",
         "one original-looking actor",
         "no text or collage"
-      ]
+      ],
+      "status": "user-approved-reference-locked",
+      "skipGeneration": true,
+      "approvedOriginalSHA256": "72af86cdea12de067e7dda88682892c6a528e9c6249fb0a055d1f431b782cd96",
+      "assetInRepository": false
     },
     {
       "id": "soyeon-face",
@@ -109,10 +124,12 @@
       ],
       "userApprovedFace": true,
       "lockedReferenceDescription": "Approved original cinematic still (female firefighter): Korean woman around 30, very dark brown long hair swept into a loose high ponytail with side wisps, large natural warm-brown eyes, soft defined oval face, straight dark eyebrows, light natural skin with subtle realistic fine texture, slightly parted lips, attractive but natural, wearing black practical top, soot-marked black turnout trousers with yellow reflective stripes, dark fingerless gloves, firefighter rescue backpack/harness. At disaster site, crouching with left gloved hand touching hair and face toward camera. Preserve EXACT approved face when making full-body/scene images. Do not substitute former short-pixie design.",
-      "status": "approved-face-locked",
+      "status": "user-approved-reference-locked",
       "skipGeneration": true,
       "approvedSource": "a_realistic_high_resolution_cinematic_outdoor_sc.png",
-      "approvedSha256": "349ec8eef7e7a93d09a85d468096ce26bdad69a25a1648a2ec7fa1d215d5cd10"
+      "approvedSha256": "349ec8eef7e7a93d09a85d468096ce26bdad69a25a1648a2ec7fa1d215d5cd10",
+      "approvedOriginalSHA256": "349ec8eef7e7a93d09a85d468096ce26bdad69a25a1648a2ec7fa1d215d5cd10",
+      "assetInRepository": false
     },
     {
       "id": "soyeon-full",
@@ -133,7 +150,7 @@
       ],
       "userApprovedFace": true,
       "lockedReferenceDescription": "Approved original cinematic still (female firefighter): Korean woman around 30, very dark brown long hair swept into a loose high ponytail with side wisps, large natural warm-brown eyes, soft defined oval face, straight dark eyebrows, light natural skin with subtle realistic fine texture, slightly parted lips, attractive but natural, wearing black practical top, soot-marked black turnout trousers with yellow reflective stripes, dark fingerless gloves, firefighter rescue backpack/harness. At disaster site, crouching with left gloved hand touching hair and face toward camera. Preserve EXACT approved face when making full-body/scene images. Do not substitute former short-pixie design.",
-      "status": "not-generated",
+      "status": "not-accepted",
       "skipGeneration": false,
       "acceptance": {
         "singleImage": true,
@@ -144,7 +161,8 @@
         "noCollage": true,
         "noLabels": true,
         "noCroppingFromPanel": true
-      }
+      },
+      "assetInRepository": false
     },
     {
       "id": "nagyeong-face",
@@ -162,7 +180,10 @@
         "3:4 portrait composition",
         "no text or collage",
         "hands/face anatomically realistic"
-      ]
+      ],
+      "status": "not-accepted",
+      "skipGeneration": false,
+      "assetInRepository": false
     },
     {
       "id": "nagyeong-full",
@@ -180,7 +201,10 @@
         "full body fully in frame",
         "one original-looking actor",
         "no text or collage"
-      ]
+      ],
+      "status": "not-accepted",
+      "skipGeneration": false,
+      "assetInRepository": false
     }
   ],
   "approvedVisualLock": {
@@ -199,5 +223,13 @@
     "approvedFaceIsImmutable": true,
     "noFinalStatusWithoutManualVisualCheck": true,
     "sceneAssetsMustDifferInPoseLocationAndAction": true
+  },
+  "productionStatus": {
+    "approvedReferenceCount": 4,
+    "targetReferenceCount": 8,
+    "gameAssetsCommitted": 0,
+    "independentlyNewAcceptedThisTurn": 0,
+    "mediaBinaryLocation": "G1 archive in current chat, not GitHub",
+    "doNotTreatDocumentationAsGeneration": true
   }
 }
