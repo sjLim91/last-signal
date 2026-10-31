@@ -25,7 +25,7 @@
       "type": "face",
       "path": "assets/characters/seoa-face.webp",
       "aspectRatio": "3:4",
-      "referenceImage": null,
+      "referenceImage": "a_crisp_high_detail_full_body_portrait_scene_in.png",
       "prompt": "Produce exactly ONE photograph, of exactly ONE original fictional Korean adult woman, never a composite or contact sheet. Fine physical skin texture, realistic natural pores, real asymmetry, stray hair, credible fabric material, subtle exhaustion, soft directional daylight, 50mm photography, physical camera photograph from an indie Korean survival thriller, unretouched realistic aesthetic. Neutral plain cool gray-blue studio backdrop. No stylization or illustration. No text, hangul, labels, logos, watermark, subtitles, captions, picture borders, graphic panels, inset photographs, split screens, diptychs, collages or extra people. Entirely safe and nonsexual.\nIdentity locked for 윤서아 (age 32, 전직 구조대원). Korean woman age 32, strong angular heart-shaped face, defined straight eyebrows, alert dark brown slightly hooded eyes, tiny mole on left cheekbone, medium-light olive toned skin with natural fine pores, short naturally straight black jaw-length bob haircut tucked behind the right ear, broad athletic shoulders and sturdy practical build. Not glamorous, visibly experienced emergency rescue worker. Costume: distressed charcoal field rescue jacket, faded olive thermal shirt, black work trousers and used rescue boots, red emergency medical backpack, first aid gloves, no conspicuous graphics; no uniform insignia text Expression: contained fatigue and calm, protective determined gaze. Distinguishing signature: angular face and short straight bob, mole on left cheekbone, charcoal-olive rescue layers.\nProfessional documentary casting headshot portrait framed mid torso through hair, entire face in focus, almost frontal camera orientation with eyes toward camera, shoulders clearly visible and consistent costume details. Neither action photo nor poster. ONE IMAGE of ONE PERSON only.",
       "review": [
         "one original-looking actor",
@@ -35,14 +35,26 @@
         "no text or collage",
         "hands/face anatomically realistic"
       ],
-      "status": "user-approved-reference-locked",
+      "status": "replacement-review-pending",
       "skipGeneration": true,
-      "approvedOriginalSHA256": "500480fcc63ba420dc1e098669eea31ab47ec815de6b6f81932d90303d3162bb",
       "assetInRepository": false,
       "archiveSource": "g1/source/approved-reference-webp.json",
       "archiveEncoding": "base64",
       "recoverableBy": "node scripts/materialize-g1.mjs",
-      "repositoryBinaryPresent": false
+      "repositoryBinaryPresent": false,
+      "userApprovedFace": false,
+      "previousApprovedSource": "last_signal_yoon_seoa_new_portrait.png",
+      "previousApprovedOriginalSHA256": "500480fcc63ba420dc1e098669eea31ab47ec815de6b6f81932d90303d3162bb",
+      "replacementCandidateSource": "a_close_up_high_detail_portrait_style_image_of_a.png",
+      "replacementCandidateOriginalSHA256": "d60de4cc38687a0353ce7a524814bb2a5c8d6bbedb24b20deb20ca1a224cdb75",
+      "replacementCandidateDimensions": {
+        "width": 1086,
+        "height": 1448
+      },
+      "replacementCandidateAspectRatio": "3:4",
+      "replacementCandidateStatus": "generated-awaiting-user-approval",
+      "identityReferencePriority": "Match newly approved seoa-full original image only; older seoa-face is historical archive, not current identity authority.",
+      "lockedReferenceDescription": "Replacement review candidate: close-up of the exact short black bob-haired Korean woman in the approved 2:3 full-body photo. Dark brown eyes, subtle beauty marks, calm confident expression; black rescue jacket, olive ribbed tank, red medical backpack straps. New face remains unapproved until user confirms."
     },
     {
       "id": "seoa-full",
@@ -61,9 +73,21 @@
         "one original-looking actor",
         "no text or collage"
       ],
-      "status": "not-accepted",
-      "skipGeneration": false,
-      "assetInRepository": false
+      "status": "user-approved-reference-locked",
+      "skipGeneration": true,
+      "assetInRepository": false,
+      "userApprovedFull": true,
+      "approvedSource": "a_crisp_high_detail_full_body_portrait_scene_in.png",
+      "approvedOriginalSHA256": "5025bc844119c7434d4cd7da491b3281328527df5defada7475dc39fe28febaa",
+      "approvedDimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "approvedAspectRatio": "2:3",
+      "originalMediaType": "image/png",
+      "assetArchiveStatus": "approved-in-chat-not-yet-archived",
+      "lockedReferenceDescription": "Approved original 2:3 real-photo full body of fictional Korean woman 윤서아, short jaw-length dark bob, attractive calm expression, black tactical jacket open over fitted olive ribbed top, black tactical work trousers, rescue gloves and boots, red rescue backpack straps in dark realistic industrial emergency equipment room. This exact image is immutable; face reference for new 3:4 portrait must be this full-body photo rather than previous outdated face.",
+      "reviewNote": "User explicitly approved the full-body photo and requested the face headshot to be regenerated FROM this approved full-body identity. Full-body locked. Face headshot shown as candidate, not yet user-approved."
     },
     {
       "id": "jiyu-face",
@@ -297,8 +321,10 @@
     "webpReconstructionVerifiedLocally": true,
     "archivePath": "g1/source/approved-reference-webp.json",
     "reconstructionCommand": "node scripts/materialize-g1.mjs",
-    "note": "Six user-approved photos, four reference WebP archives in GitHub. Both Nagyeong face and full-length are explicitly approved, with known original image hashes. Nagyeong original image binaries are in conversation/container, not yet in repository. Only seoa-full and soyeon-full remain unaccepted.",
+    "note": "Active 6/8 approved: Seoa full, Jiyu face/full, Soyeon face, Nagyeong face/full. Seoa previous face is historical archive, new 3:4 replacement headshot awaits user approval; Soyeon full still missing. Seoa full and candidate face binaries remain in conversation/container, not yet archived in GitHub. Existing G1 archive includes the now-historical Seoa face.",
     "pendingReferenceCount": 2,
-    "nagyeongFullApproved": true
+    "nagyeongFullApproved": true,
+    "seoaFullApproved": true,
+    "seoaFaceReplacementReviewPending": true
   }
 }
