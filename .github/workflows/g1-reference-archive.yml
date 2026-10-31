@@ -30,7 +30,7 @@ jobs:
         run: node scripts/materialize-g1.mjs
       - name: Verify the reconstructed assets byte-for-byte
         run: node scripts/materialize-g1.mjs --verify
-      - name: Ensure exactly 4 accepted assets and 4 pending
+      - name: Ensure 4 archived images, 5 approved identities, 3 pending shots
         run: |
           node scripts/materialize-g1.mjs --verify > /tmp/g1-check.json
-          node -e "const r=require('/tmp/g1-check.json');if(r.approved!==4||r.pending.length!==4||r.assets.length!==4)process.exit(1)"
+          node -e "const r=require('/tmp/g1-check.json'), m=require('./docs/g1-reference-jobs.json'); if(r.approved!==4||r.assets.length!==4||m.productionStatus.approvedReferenceCount!==5||m.productionStatus.approvedWebpArchivedInGitHub!==4||m.jobs.filter(j=>j.status==='not-accepted').length!==3||!m.jobs.find(j=>j.id==='nagyeong-face').userApprovedFace||!m.jobs.find(j=>j.id==='nagyeong-full').acceptance.mustMatchApprovedNagyeongFace)process.exit(1)"
