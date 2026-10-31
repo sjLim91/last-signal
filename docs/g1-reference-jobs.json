@@ -172,7 +172,7 @@
     "characterName": "박소연",
     "locked": "face only",
     "approvedSourceFilename": "a_realistic_high_resolution_cinematic_outdoor_sc.png",
-    "approvedSourceSha256": "__REPLACE_SHA__",
+    "approvedSourceSha256": "349ec8eef7e7a93d09a85d468096ce26bdad69a25a1648a2ec7fa1d215d5cd10",
     "notes": "The approved face is stored in the downloadable G1 archive generated in the chat; not yet uploaded to GitHub. Do NOT infer that the repo contains the approved source image. Other full/action stills are unapproved drafts."
   }
 }
