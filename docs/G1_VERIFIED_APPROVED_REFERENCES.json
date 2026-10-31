@@ -1,0 +1,52 @@
+{
+  "project": "LAST SIGNAL",
+  "phase": "G1",
+  "status": "incomplete",
+  "date": "2026-11-01",
+  "approvedReferences": {
+    "seoa-face": {
+      "filename": "last_signal_yoon_seoa_new_portrait.png",
+      "sha256": "500480fcc63ba420dc1e098669eea31ab47ec815de6b6f81932d90303d3162bb",
+      "width": 638,
+      "height": 1024,
+      "provenance": "user-approved older composite crop, preserved without claims of independent generation"
+    },
+    "jiyu-face": {
+      "filename": "han_jiyu_face.png",
+      "sha256": "5b7635048f90097343993280f8f133f9e0c027be5afcc7b719fb1354fc240ca2",
+      "width": 510,
+      "height": 510,
+      "provenance": "user-approved older composite crop"
+    },
+    "jiyu-full": {
+      "filename": "han_jiyu_full.png",
+      "sha256": "72af86cdea12de067e7dda88682892c6a528e9c6249fb0a055d1f431b782cd96",
+      "width": 344,
+      "height": 787,
+      "provenance": "user-approved older composite crop"
+    },
+    "soyeon-face": {
+      "filename": "a_realistic_high_resolution_cinematic_outdoor_sc.png",
+      "sha256": "349ec8eef7e7a93d09a85d468096ce26bdad69a25a1648a2ec7fa1d215d5cd10",
+      "width": 1335,
+      "height": 1178,
+      "provenance": "user-approved independent photograph"
+    }
+  },
+  "blocked": {
+    "seoa-full": "No accepted independent full-body reference yet",
+    "soyeon-full": "Latest outputs were near-duplicates of crouching source, not standing head-to-toe",
+    "nagyeong-face": "Image generation ignored Nagyeong prompt and reproduced Soyeon repeatedly",
+    "nagyeong-full": "Depends on accepted Nagyeong face"
+  },
+  "approvalRules": [
+    "Preserve user-selected faces exactly",
+    "Only one photographic frame per new generated file",
+    "Never extract a new output from a character sheet/collage",
+    "No repeated scene pose disguised as new content",
+    "Every full-body must show top of head and both boots",
+    "Original image SHA must match lock; labels/dialogue remain outside photo"
+  ],
+  "filesAvailable": "User-facing download archive only; these media files are not yet in GitHub",
+  "gameCodeUpdated": false
+}
