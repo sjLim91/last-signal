@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 const source=fs.readFileSync(new URL('../g2/prologue-client.js',import.meta.url),'utf8');
 const listeners=new Map();
 const add=(name,fn)=>{const old=listeners.get(name)||[];old.push(fn);listeners.set(name,old);};
-const classList=()=>{const s=new Set();return {add:x=>s.add(x),remove:x=>s.delete(x),contains:x=>s.has(x)};};
+const classList=()=>{const s=new Set();return {add:(...xs)=>xs.forEach(x=>s.add(x)),remove:(...xs)=>xs.forEach(x=>s.delete(x)),contains:x=>s.has(x)};};
 const sent=[];
 let available=new Set(['p0','p2','p3']);
 const visibleUnavailable = new Set(['p2']); // Preflight success can still fail in the displayed element.
