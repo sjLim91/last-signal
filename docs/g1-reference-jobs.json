@@ -1,7 +1,7 @@
 {
   "project": "LAST SIGNAL",
   "phase": "G1",
-  "status": "generation_pending",
+  "status": "reference-approval-complete",
   "revision": "2026-11-01",
   "purpose": "eight individual photographic actor reference shots, 4 unique identities x face and full body",
   "generativePolicy": {
@@ -189,9 +189,9 @@
         "no text or collage"
       ],
       "userApprovedFace": true,
-      "lockedReferenceDescription": "Approved original cinematic still (female firefighter): Korean woman around 30, very dark brown long hair swept into a loose high ponytail with side wisps, large natural warm-brown eyes, soft defined oval face, straight dark eyebrows, light natural skin with subtle realistic fine texture, slightly parted lips, attractive but natural, wearing black practical top, soot-marked black turnout trousers with yellow reflective stripes, dark fingerless gloves, firefighter rescue backpack/harness. At disaster site, crouching with left gloved hand touching hair and face toward camera. Preserve EXACT approved face when making full-body/scene images. Do not substitute former short-pixie design.",
-      "status": "not-accepted",
-      "skipGeneration": false,
+      "lockedReferenceDescription": "Approved individual photorealistic full-length standing image of 30-year-old fictional Korean former firefighter Park Soyeon, large brown eyes, soft oval face, long loosely elevated dark-brown ponytail with wisps, confident stance, dark charcoal fitted firefighting work shirt, gloves on hips, black heavy turnout trousers with yellow reflective ankle bands, boots, firefighting jacket tied at waist, fire engine and industrial disaster site behind her.",
+      "status": "user-approved-reference-locked",
+      "skipGeneration": true,
       "acceptance": {
         "singleImage": true,
         "fullBodyStanding": true,
@@ -202,7 +202,18 @@
         "noLabels": true,
         "noCroppingFromPanel": true
       },
-      "assetInRepository": false
+      "assetInRepository": false,
+      "userApprovedFull": true,
+      "approvedSource": "산업_현장의_구조대_리더.png",
+      "approvedOriginalSHA256": "774313efeb4b92936fbc42729d2355defc5b6ddf3712f024b4f82cb9bd0448dd",
+      "approvedDimensions": {
+        "width": 1024,
+        "height": 1536
+      },
+      "approvedAspectRatio": "2:3",
+      "originalMediaType": "image/png",
+      "assetArchiveStatus": "approved-in-chat-not-yet-archived",
+      "approvalNote": "The user explicitly said '이걸로 확정해' for the generated firefighter full-body image. The original image was checked in the current session and its SHA-256 and dimensions verified. This image must remain unchanged unless user requests revision."
     },
     {
       "id": "nagyeong-face",
@@ -311,7 +322,7 @@
     "sceneAssetsMustDifferInPoseLocationAndAction": true
   },
   "productionStatus": {
-    "approvedReferenceCount": 7,
+    "approvedReferenceCount": 8,
     "targetReferenceCount": 8,
     "gameAssetsCommitted": 0,
     "independentlyNewAcceptedThisTurn": 1,
@@ -321,16 +332,16 @@
     "webpReconstructionVerifiedLocally": true,
     "archivePath": "g1/source/approved-reference-webp.json",
     "reconstructionCommand": "node scripts/materialize-g1.mjs",
-    "note": "Six user-approved photos, four reference WebP archives in GitHub. Both Nagyeong face and full-length are explicitly approved, with known original image hashes. Nagyeong original image binaries are in conversation/container, not yet in repository. Only seoa-full and soyeon-full remain unaccepted.",
-    "pendingReferenceCount": 1,
+    "note": "All 8/8 distinct actor reference images (face + full) have user approval. Only the four historical WebP images are reconstructable from repository archive; current replacements and other approved original image binaries are not yet all present in GitHub. Do not equate G1 photo approvals with integration, packaging, or deployment.",
+    "pendingReferenceCount": 0,
     "nagyeongFullApproved": true,
     "seoaFaceApproved": true,
     "seoaFullApproved": true,
-    "remainingUnapproved": [
-      "soyeon-full"
-    ],
+    "remainingUnapproved": [],
     "seoaUserApprovedPngsAvailableInChat": true,
     "seoaWebpArchivePreparedLocally": true,
-    "notes": "G1 7/8 user-approved. Current Seoa face (burgundy shirt, tan vest dusk) supersedes older face stored in GitHub historical archive. Current Seoa full body original user-approved and unchanged. Two current Seoa WebP binaries are prepared locally and downloadable as a ZIP; NOT yet stored as GitHub binaries. Only Soyeon full is pending."
+    "notes": "G1 PHOTO APPROVALS COMPLETE 8/8. Asset integration and game deployment NOT YET VERIFIED. Last approval: Park Soyeon full 1024x1536 original PNG SHA256 774313efeb4b92936fbc42729d2355defc5b6ddf3712f024b4f82cb9bd0448dd.",
+    "soyeonFullApproved": true,
+    "assetApprovalComplete": true
   }
 }
