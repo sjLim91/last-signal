@@ -34,7 +34,7 @@ check(html.includes('render({follow:state.history.length>0});'),'initial render 
 check(!client.includes('charportrait.innerHTML'),'G2 must not fabricate face images');
 check(css.includes('.g2-shot.g2-ready'),'visual override requires successful image load');
 // Verify embedded core script still parses, without executing browser code.
-const start=html.lastIndexOf('<script>'),end=html.lastIndexOf('</script>');
+const start=html.lastIndexOf('<script>'),end=html.indexOf('</script>',start);
 check(start>=0&&end>start,'V3 embedded script found');
 if(start>=0&&end>start){
  const tmp=path.join(os.tmpdir(),'last-signal-g2-inline-'+process.pid+'.js');

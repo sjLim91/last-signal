@@ -1,0 +1,7 @@
+/* LAST SIGNAL — V5 narrative reading rhythm and consequences. */
+.story-article .narration{font-size:clamp(14px,1.4vw,16px);line-height:2.02;color:#e1e3e4;letter-spacing:.005em;white-space:pre-line;overflow-wrap:break-word;}
+.story-article .dialogue p{font-size:clamp(14px,1.35vw,16px);line-height:1.9;}
+.v5-consequence{margin:14px 0 5px;padding:12px 15px;border-left:3px solid #b59668;border-radius:0 9px 9px 0;background:#302c29;color:#e0d4c1;}
+.v5-consequence small{display:block;margin-bottom:6px;color:#d6b18b;font-size:11px;font-weight:700;letter-spacing:.03em;}
+.v5-consequence p{margin:0;font-size:13px;line-height:1.8;white-space:pre-line;}
+@media(max-width:680px){.story-article .narration{font-size:15px;line-height:1.95}.v5-consequence{padding:11px 12px}.v5-consequence p{font-size:13.5px}}

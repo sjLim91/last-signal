@@ -1,0 +1,38 @@
+name: V5 immersive narrative validation
+
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'story/**'
+      - 'scripts/test-v5-story.mjs'
+      - '.github/workflows/story-v5.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'story/**'
+      - 'scripts/test-v5-story.mjs'
+      - '.github/workflows/story-v5.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  narrative-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse V5 narrative JavaScript
+        run: node --check story/v5-narrative.js
+      - name: Validate narrative, continuity, branching and compatible state
+        run: node scripts/test-v5-story.mjs
+      - name: Preserve G2 and V3 functionality
+        run: |
+          node --check g2/prologue-client.js
+          node scripts/test-g2-loader.mjs
+          node scripts/validate-g2.mjs
