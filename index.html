@@ -73,6 +73,8 @@
 .toast{top:104px;bottom:auto;pointer-events:none;line-height:1.5;background:#3a4a4b;border-color:#829da0;max-width:min(94%,430px)}
 
 </style>
+<link rel="stylesheet" href="./g2/prologue.css">
+  <script defer src="./g2/prologue-client.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -320,14 +322,17 @@ function toggleReadingSize(){
 }
 function followLatestScene(){
  const run=++followRun;
- // A newly inserted scene must be visible after layout, lazy image loads and font layout.
- requestAnimationFrame(()=>{if(run===followRun)scrollToLatest('instant');});
+ const started=performance.now();
+ // Never yank the timeline away after a reader manually scrolls while images/fonts load.
+ const shouldFollow=()=>run===followRun&&
+    (!window.LAST_SIGNAL_G2||window.LAST_SIGNAL_G2.lastManualScroll()<=started);
+ requestAnimationFrame(()=>{if(shouldFollow())scrollToLatest('instant');});
  const log=$('#storyScroll');if(!log)return;
  const latest=getLatestTarget();if(!latest)return;
  latest.querySelectorAll('img').forEach(image=>{
-   if(!image.complete)image.addEventListener('load',()=>{if(run===followRun)requestAnimationFrame(()=>scrollToLatest('instant'));},{once:true});
+   if(!image.complete)image.addEventListener('load',()=>{if(shouldFollow())requestAnimationFrame(()=>scrollToLatest('instant'));},{once:true});
  });
- if(document.fonts?.ready)document.fonts.ready.then(()=>{if(run===followRun)scrollToLatest('instant');});
+ if(document.fonts?.ready)document.fonts.ready.then(()=>{if(shouldFollow())scrollToLatest('instant');});
 }
 function render(opts={follow:false,preserveScroll:true}){const oldScroll=$('.story-scroll');const scrollY=oldScroll?.scrollTop||0;
  const progress=CH_INDEX(chapterOf(state).id);ROOT.innerHTML=`<div class="shell"><header class="header"><button class="smallbtn" data-action="open" data-target="menu" aria-label="메뉴 열기">☰</button><div class="mark">LAST SIGNAL<small>마지막 신호 · SURVIVAL STORY</small></div><span class="top-spacer"></span><button class="smallbtn" data-action="open" data-target="people">인물</button><button class="smallbtn" data-action="open" data-target="status">상태</button></header>
