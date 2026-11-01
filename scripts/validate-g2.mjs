@@ -29,7 +29,7 @@ check(html.includes('./g2/prologue-client.js')&&html.includes('./g2/prologue.css
 check(html.includes('function followLatestScene('),'V3 scrolling retained');
 check(html.includes('lastManualScroll()<=started'),'manual reading scroll preserved');
 check(html.includes('const SCENES={'),'V3 scenes retained');
-check(html.includes("const PERSONS="),'V3 character contract retained');
+check(/\bconst\s+PERSONS\s*=/.test(html),'V3 character contract retained');
 check(html.includes('render({follow:state.history.length>0});'),'initial render retained');
 check(!client.includes('charportrait.innerHTML'),'G2 must not fabricate face images');
 check(css.includes('.g2-shot.g2-ready'),'visual override requires successful image load');
