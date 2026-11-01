@@ -52,23 +52,46 @@
     if (!article.isConnected || article.dataset.g2Scene === id) return;
     const shot = article.querySelector('img.sceneimage');
     if (!shot) return;
-    article.dataset.g2Scene = id;
-    article.classList.add('g2-shot');
+
     const frame = shot.closest('.charframe');
-    const previous = shot.getAttribute('src');
-    shot.alt = item.title + ' · 고유 실사 장면';
-    shot.setAttribute('fetchpriority', id === 'p0' ? 'high' : 'auto');
-    shot.setAttribute('decoding','async');
-    if (id === 'p0') shot.loading = 'eager';
-    else shot.loading = 'lazy';
-    shot.addEventListener('error', () => {
-      shot.src = previous;
+    const previousSrc = shot.getAttribute('src');
+    const previousAlt = shot.alt;
+    const nextSrc = new URL(item.file, document.baseURI).href;
+    let settled = false;
+    const clean = () => {
+      shot.removeEventListener('load', onDisplayLoad);
+      shot.removeEventListener('error', onDisplayError);
+    };
+    function onDisplayLoad() {
+      if (settled) return;
+      settled = true;
+      clean();
+      if (!article.isConnected) return;
+      // Do not hide the legacy portrait until the displayed still has actually loaded.
+      article.dataset.g2Scene = id;
+      article.classList.add('g2-shot', 'g2-ready');
+      if (frame) frame.classList.add('g2-ready');
+    }
+    function onDisplayError() {
+      if (settled) return;
+      settled = true;
+      clean();
+      article.dataset.g2Missing = id;
       article.classList.remove('g2-ready');
       if (frame) frame.classList.remove('g2-ready');
-    }, {once: true});
-    shot.src = new URL(item.file, document.baseURI).href;
-    article.classList.add('g2-ready');
-    if (frame) frame.classList.add('g2-ready');
+      shot.alt = previousAlt;
+      if (previousSrc) shot.src = previousSrc;
+    }
+
+    shot.addEventListener('load', onDisplayLoad, {once:true});
+    shot.addEventListener('error', onDisplayError, {once:true});
+    shot.alt = item.title + ' · 고유 실사 장면';
+    shot.setAttribute('fetchpriority', id === 'p0' ? 'high' : 'auto');
+    shot.setAttribute('decoding', 'async');
+    shot.loading = id === 'p0' ? 'eager' : 'lazy';
+    shot.src = nextSrc;
+    // Some browsers report a cached image as already complete.
+    if (shot.complete && shot.naturalWidth > 0) queueMicrotask(onDisplayLoad);
   }
 
   function enhance(){
