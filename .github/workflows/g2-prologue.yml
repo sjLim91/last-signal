@@ -1,0 +1,43 @@
+name: G2 prologue and reading-flow QA
+
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'g2/**'
+      - 'scripts/validate-g2.mjs'
+      - 'scripts/test-g2-loader.mjs'
+      - 'docs/v4-scene-manifest.json'
+      - '.github/workflows/g2-prologue.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'g2/**'
+      - 'scripts/validate-g2.mjs'
+      - 'docs/v4-scene-manifest.json'
+      - '.github/workflows/g2-prologue.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  g2-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check G2 module syntax
+        run: node --check g2/prologue-client.js
+      - name: Exercise the loader and legacy fallback in a simulated browser
+        run: node scripts/test-g2-loader.mjs
+      - name: Validate V3 story syntax, four scene IDs, renderer and fallbacks
+        run: node scripts/validate-g2.mjs
+      - name: Explain photo gate status without marking complete
+        run: |
+          echo "G2 media approval requires 4 distinct scene WebP files."
+          echo "The strict gate is: node scripts/validate-g2.mjs --strict"
+          echo "This workflow validates engine integration; it does NOT certify absent photos."
