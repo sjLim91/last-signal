@@ -1,0 +1,40 @@
+/* LAST SIGNAL / G2: visual scene and mobile reading improvements */
+.g2-shot.g2-ready .sceneimage {
+  display:block;
+  width:100%;
+  height:auto !important;
+  aspect-ratio:16 / 9;
+  object-fit:cover;
+  object-position:center;
+  background:#222a30;
+  filter:none;
+  border-radius:12px;
+  content-visibility:visible;
+}
+.g2-shot.g2-ready .charframe {display:block;}
+.g2-shot.g2-ready .charportrait {display:none;}
+.g2-shot.g2-ready .sceneheading {color:#e7cebd;}
+.g2-shot .sceneimage {transition:none;}
+.story-article {overflow-anchor:none;}
+.story-scroll {scroll-padding-top:18px;scroll-padding-bottom:26px;overscroll-behavior-y:contain;}
+.story-choices {scroll-margin-top:20px;scroll-margin-bottom:15px;}
+.story-choices .choice {min-height:50px;align-items:center;}
+@media(max-width:680px) {
+  .choicepanel {
+    padding:6px 10px calc(6px + env(safe-area-inset-bottom)) !important;
+    box-shadow:0 -4px 14px #0007;
+    max-height:min(22dvh,150px);
+    overflow-y:auto;
+  }
+  .choice-shortcut {margin:0 0 5px !important;}
+  .choice-jump {min-height:34px;padding:6px 9px !important;white-space:normal !important;}
+  .choice-footnote {display:none !important;}
+  .compose textarea {min-height:39px !important;font-size:15px !important;}
+  .composefoot {display:none !important;}
+  .story-choices {padding:14px 11px 16px;}
+  .story-choices .choices{display:grid;grid-template-columns:1fr;max-height:none !important;overflow:visible !important;}
+  .story-choices .choice{line-height:1.6;font-size:15px;padding:12px 11px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .g2-shot .sceneimage {transition:none !important;animation:none !important;}
+}
