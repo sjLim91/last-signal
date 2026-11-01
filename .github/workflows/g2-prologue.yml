@@ -5,6 +5,8 @@ on:
     paths:
       - 'index.html'
       - 'g2/**'
+      - 'assets/scenes/**'
+      - 'assets/characters/**'
       - 'scripts/validate-g2.mjs'
       - 'scripts/test-g2-loader.mjs'
       - 'docs/v4-scene-manifest.json'
@@ -14,7 +16,10 @@ on:
     paths:
       - 'index.html'
       - 'g2/**'
+      - 'assets/scenes/**'
+      - 'assets/characters/**'
       - 'scripts/validate-g2.mjs'
+      - 'scripts/test-g2-loader.mjs'
       - 'docs/v4-scene-manifest.json'
       - '.github/workflows/g2-prologue.yml'
   workflow_dispatch:
