@@ -6,6 +6,7 @@ on:
       - 'index.html'
       - 'g2/**'
       - 'scripts/validate-g2.mjs'
+      - 'scripts/test-g2-loader.mjs'
       - 'docs/v4-scene-manifest.json'
       - '.github/workflows/g2-prologue.yml'
   push:
@@ -31,6 +32,8 @@ jobs:
           node-version: '22'
       - name: Check G2 module syntax
         run: node --check g2/prologue-client.js
+      - name: Exercise the loader and legacy fallback in a simulated browser
+        run: node scripts/test-g2-loader.mjs
       - name: Validate V3 story syntax, four scene IDs, renderer and fallbacks
         run: node scripts/validate-g2.mjs
       - name: Explain photo gate status without marking complete
