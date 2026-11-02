@@ -238,8 +238,8 @@ function selectChoice(i){
 }
 function openTalk(value){
  const person=spec();
- if(!person)return;
- talkOpen=value;
+ if(value&&!person)return;
+ talkOpen=!!value;
  ui.talkPanel.hidden=!talkOpen;
  ui.talkChoices.replaceChildren();
  ui.talkReply.hidden=true;
