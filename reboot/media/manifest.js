@@ -51,7 +51,10 @@
   'c14-o':'최종 방송의 송출등이 켜지는 3초 장면'
  };
  const RELEASED_STILLS=Object.freeze({
-  p0:Object.freeze({image:'./media/scenes/p0.webp',sha256:'30bbb5b84628bad541a00dc81030c3618c6e553688c63b0674ecf0956a078118'})
+  p0:Object.freeze({image:'./media/scenes/p0.webp',sha256:'30bbb5b84628bad541a00dc81030c3618c6e553688c63b0674ecf0956a078118'}),
+  p1:Object.freeze({image:'./media/scenes/p1.webp',sha256:'35b46b007a650bc845864bf99b514b244c75076e2ce16268bf43267295ee0a88'}),
+  p2:Object.freeze({image:'./media/scenes/p2.webp',sha256:'6a9d5a6542421511be1231855ada753824ca9b2d82353e5974bedf8de1a5b394'}),
+  p3:Object.freeze({image:'./media/scenes/p3.webp',sha256:'dfe493bfee3a28feb7efc905cd0cfa84c00208c76e4689df6efceccb2db38dd4'})
  });
  const catalog=Object.fromEntries(ids.map(id=>{
   const ref=shots[id]||{};
