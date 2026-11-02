@@ -25,15 +25,21 @@ const ids=Object.keys(book.scenes);
 assert.equal(ids.length,79);
 assert.equal(Object.keys(media.catalog).length,79,'every story node has a media contract');
 assert.equal(media.sceneCount,79);
-assert.equal(media.approvedStillCount,1,'exactly the real P0 still is published');
+assert.equal(media.approvedStillCount,4,'four independently generated approved prologue stills');
 assert.equal(media.approvedMotionCount,0,'no fake completed action videos');
 for(const id of ids){
  const shot=media.catalog[id];
  assert.equal(shot.id,id);
- if(id==='p0'){
-  assert.equal(shot.approved,true,'committed P0 must be in manifest');
-  assert.equal(shot.image,'./media/scenes/p0.webp');
-  assert.equal(shot.sha256,'30bbb5b84628bad541a00dc81030c3618c6e553688c63b0674ecf0956a078118');
+ if(['p0','p1','p2','p3'].includes(id)){
+  const real={
+   p0:'30bbb5b84628bad541a00dc81030c3618c6e553688c63b0674ecf0956a078118',
+   p1:'35b46b007a650bc845864bf99b514b244c75076e2ce16268bf43267295ee0a88',
+   p2:'6a9d5a6542421511be1231855ada753824ca9b2d82353e5974bedf8de1a5b394',
+   p3:'dfe493bfee3a28feb7efc905cd0cfa84c00208c76e4689df6efceccb2db38dd4'
+  };
+  assert.equal(shot.approved,true,'scene original must be approved: '+id);
+  assert.equal(shot.image,'./media/scenes/'+id+'.webp');
+  assert.equal(shot.sha256,real[id]);
  }else{
   assert.equal(shot.approved,false,'pending images must not be presented as approved');
   assert.equal(shot.image,null,'missing still must not claim a URL');
@@ -124,7 +130,7 @@ function environment({approved=[],disabled=[],autoLoad=true,motion=false,reduced
  vm.runInContext(files.cinema,ctx);
  return {api:ctx.window.LastSignalCinema,book,stage,layer,tableau,caption,controls,replay,sound,skip,images,requested,ctx,events};
 }
-const fallback=environment({disabled:['p0']});
+const fallback=environment({disabled:['p0','p1','p2','p3']});
 for(const id of ['p0','p1','p2','p3']){
  await fallback.api.show(book.scenes[id]);
  assert.equal(fallback.stage.dataset.cinema,'fallback','no false success: '+id);
@@ -134,7 +140,7 @@ for(const id of ['p0','p1','p2','p3']){
 assert.equal(fallback.requested.length,0,'do not request missing photos (no 404 storm)');
 assert.equal(fallback.api.status().approvedStills,0);
 
-const loaded=environment({approved:['p0']});
+const loaded=environment({disabled:['p1','p2','p3']});
 await loaded.api.show(book.scenes.p0);
 assert.equal(loaded.stage.dataset.cinema,'approved-still');
 assert.equal(loaded.layer.children.length,1,'only one independent film still');
@@ -146,7 +152,7 @@ assert.equal(loaded.stage.dataset.cinema,'fallback','old photo never shown in ne
 assert.equal(loaded.layer.children.length,0,'old photo removed at scene boundary');
 assert.equal(loaded.requested.length,1,'no missing scene download');
 
-const stale=environment({approved:['p0'],autoLoad:false});
+const stale=environment({disabled:['p1','p2','p3'],autoLoad:false});
 const first=stale.api.show(book.scenes.p0);
 await stale.api.show(book.scenes.p1);
 stale.images[0].completeLoad();
@@ -159,7 +165,7 @@ assert.equal(guard.api.certified({...guard.ctx.window.LastSignalMediaManifest.ca
 assert.equal(guard.api.certified({...guard.ctx.window.LastSignalMediaManifest.catalog.p0,sha256:null}),false,'required checksum');
 assert.equal(guard.api.certified({...guard.ctx.window.LastSignalMediaManifest.catalog.p0,approved:false}),false,'required explicit approval');
 
-const video=environment({approved:['p0'],motion:true});
+const video=environment({approved:['p0'],disabled:['p1','p2','p3'],motion:true});
 await video.api.show(book.scenes.p0);
 assert.equal(video.layer.children.length,2,'approved still + one valid video');
 assert.equal(video.api.status().videoPlaying,true,'one-shot clip started');
