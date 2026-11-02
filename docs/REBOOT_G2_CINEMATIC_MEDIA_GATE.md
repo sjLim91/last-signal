@@ -4,17 +4,17 @@ Date: 2026-11-02. Scope: /reboot/ only. Legacy root game remains untouched.
 
 ## Real media status (not inferred)
 
-**G2 renderer implemented. Photographic originals and actor-action videos NOT produced.**
+**G2 renderer implemented. Original P0 photo committed and cataloged; P1–P3 and all actor-action videos still missing.**
 Four specific image-generation submissions were rejected because the connected image account had no remaining credits. A generated promotional composite was rejected as unsuitable: it has fake UI text and incorrect roles and is not four independently shot scenes.
 
 | Scene | Real individual still | Distinct on-screen fallback |
 |---|---|---|
-| p0 | Missing | Nighttime Korean investigative newsroom |
+| p0 | **Approved binary committed** · 1536×864 · SHA-256 `30bbb5b84628bad541a00dc81030c3618c6e553688c63b0674ecf0956a078118` | Nighttime Korean investigative newsroom (fallback only if load fails) |
 | p1 | Missing | Reporter correction/evidence desk |
 | p2 | Missing | Rainy office rooftop / anonymous caller |
 | p3 | Missing | Fictional coastal harbor memorial in the morning |
 
-Other scene originals: 75 missing. Actual standalone stills: 0/79. Actual action clips: 0/8.
+Other scene originals: 75 missing. Actual standalone stills: **1/79** (P0 only). Prologue: **1/4**. Actual action clips: **0/8**.
 Legacy G1 approved reference faces are not reboot scene stills. Existing fallback sets are HTML/CSS scenery, not photorealistic actors or motion footage.
 
 ## Implemented media behavior
@@ -46,4 +46,12 @@ Each future clip must be a distinct real contextual action, 3–5 seconds, with 
 - node --check reboot/cinema.js
 
 The second test covers 79 scene contracts, 4 unique placeholders, absence of missing-file network requests, positive synthetic still load, stale load prevention and video safety/low power behavior.
-**G2 VISUAL PRODUCTION IS NOT COMPLETE** until four original real film stills are committed, visually reviewed, verified and shown correctly in a browser.
+**G2 PROLOGUE VISUAL PRODUCTION IS STILL INCOMPLETE** until P1–P3 each have independent real stills, validated hashes and working browser display. P0 is genuinely committed; this does not imply remaining scenes or videos are finished.
+
+## P0 exact delivery (2026-11-02)
+
+- File: `reboot/media/scenes/p0.webp` (actual committed bytes; not a URL-only pointer).
+- Dimensions: 1536×864, WebP. File size 150,740 bytes.
+- SHA-256: `30bbb5b84628bad541a00dc81030c3618c6e553688c63b0674ecf0956a078118`.
+- Content: empty investigative newsroom at night, abstract audio waveform, rain-speckled windows; one scene and no character identity conflict.
+- P1 attempt #1/#2 rejected: large unidentified female face, real broadcaster logo or unwanted text, and a repeated newsroom figure rather than the required evidence-desk still. These images are NOT released.
