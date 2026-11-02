@@ -1,0 +1,27 @@
+name: Reboot maritime thriller contract
+on:
+  pull_request:
+    paths:
+      - 'reboot/**'
+      - 'scripts/test-reboot.mjs'
+      - '.github/workflows/reboot.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'reboot/**'
+      - 'scripts/test-reboot.mjs'
+      - '.github/workflows/reboot.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-reboot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check reboot/story.js
+      - run: node --check reboot/engine.js
+      - run: node scripts/test-reboot.mjs
