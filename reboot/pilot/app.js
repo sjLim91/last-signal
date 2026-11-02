@@ -6,6 +6,8 @@
 const model=window.LastSignalPilot;
 if(!model)throw Error('Pilot story not available');
 const KEY='last_signal_pilot_ep0_v2';
+// Only scene-matching, individually approved local film stills: no reuse across unrelated scenes.
+const SCENE_STILLS=Object.freeze({ring:'p0',hidden:'p2',editor_docs:'p1'});
 const $=id=>document.getElementById(id);
 const ui={title:$('sceneTitle'),clock:$('clock'),place:$('place'),copy:$('sceneCopy'),choices:$('choices'),consequence:$('consequence'),hero:$('hero'),photo:$('heroPhoto'),
  still:$('stillLabel'),stamp:$('stepLabel'),counter:$('evidenceCounter'),trail:$('trail'),stats:$('stats'),progress:$('progress'),
@@ -36,19 +38,20 @@ function imageForScene(node){
  ui.photo.classList.remove('active');
  ui.photo.style.backgroundImage='';
  ui.still.textContent='장면 분위기 연출 · 전용 실사 대기';
- if(node.id!=='ring')return;
+ const stillId=SCENE_STILLS[node.id];
+ if(!stillId)return;
  const image=new Image();
  image.decoding='async';
  image.onload=()=>{
-  if(mediaEpoch!==epoch || state.scene!=='ring'||image.naturalWidth<100)return;
-  ui.photo.style.backgroundImage='url("../media/scenes/p0.webp")';
+  if(mediaEpoch!==epoch || state.scene!==node.id||image.naturalWidth<100)return;
+  ui.photo.style.backgroundImage='url("../media/scenes/'+stillId+'.webp")';
   ui.photo.classList.add('active');
-  ui.still.textContent='P0 · 독립 실사 원본';
+  ui.still.textContent=stillId.toUpperCase()+' · 독립 실사 원본';
  };
  image.onerror=()=>{
   if(mediaEpoch===epoch)ui.still.textContent='장면 분위기 연출 · 실사 로딩 실패';
  };
- image.src='../media/scenes/p0.webp';
+ image.src='../media/scenes/'+stillId+'.webp';
 }
 function renderStory(node){
  ui.title.textContent=node.title;
