@@ -12,7 +12,11 @@
  const layer=document.getElementById('cinemaLayer');
  const tableau=document.getElementById('cinemaTableau');
  const caption=document.getElementById('cinemaMediaStatus');
- if(!stage||!layer||!tableau||!caption)throw new Error('Reboot cinema markup missing');
+ const controls=document.getElementById('cinemaControls');
+ const replayBtn=document.getElementById('cinemaReplay');
+ const soundBtn=document.getElementById('cinemaSound');
+ const skipBtn=document.getElementById('cinemaSkip');
+ if(!stage||!layer||!tableau||!caption||!controls||!replayBtn||!soundBtn||!skipBtn)throw new Error('Reboot cinema markup missing');
 
  const photoPattern=/^\.\/media\/scenes\/[a-z0-9_-]+\.(?:webp|avif|jpe?g)$/;
  const videoPattern=/^\.\/media\/motion\/[a-z0-9_-]+\.(?:mp4|webm)$/;
@@ -23,6 +27,8 @@
  let generation=0;
  let video=null;
  let currentId=null;
+ let currentEntry=null;
+ let wantsSound=false;
  let visible=true;
  const make=(tag,className)=>{
   const el=document.createElement(tag);
@@ -39,6 +45,14 @@
  }
  function videoAllowed(entry){
   return certified(entry)&&entry.motion&&entry.motionApproved===true&&typeof entry.motionSha256==='string'&&/^[0-9a-f]{64}$/.test(entry.motionSha256)&&validLocal(entry.motion,videoPattern)&&!reduce?.matches&&!dataSaver();
+ }
+ function updateControls(){
+  const available=!!(currentEntry&&videoAllowed(currentEntry)&&stage.dataset.cinema!=='fallback');
+  controls.hidden=!available;
+  soundBtn.hidden=!video;
+  skipBtn.hidden=!video;
+  soundBtn.setAttribute('aria-pressed',String(!!video&&!video.muted));
+  soundBtn.textContent=video&&!video.muted?'소리 끄기':'소리 켜기';
  }
  function silence(){
   if(!video)return;
@@ -99,25 +113,52 @@
   }
   stage.dataset.cinema='fallback';
   caption.textContent='장면 연출 · 실사 제작 대기';
+  updateControls();
  }
- function maybeVideo(entry,epoch){
+ function maybeVideo(entry,epoch,userActivated=false){
   if(!videoAllowed(entry)||epoch!==generation||!visible)return;
   const vid=document.createElement('video');
   vid.className='cinema-video';
   vid.preload='none';
-  vid.muted=true;
+  // Browser autoplay is ALWAYS silent; sound can only be enabled by a user gesture.
+  vid.muted=userActivated?!wantsSound:true;
   vid.defaultMuted=true;
   vid.playsInline=true;
   vid.setAttribute('playsinline','');
   vid.loop=false;
   vid.controls=false;
-  vid.addEventListener('ended',()=>{if(vid===video) {vid.remove();video=null;}},{once:true});
-  vid.addEventListener('error',()=>{if(vid===video){silence();}},{once:true});
+  vid.addEventListener('playing',()=>{
+   if(vid!==video)return;
+   stage.dataset.cinema='approved-motion';
+   caption.textContent='실사 영상 재생 중';
+   updateControls();
+  });
+  vid.addEventListener('ended',()=>{
+   if(vid!==video)return;
+   silence();
+   stage.dataset.cinema='approved-still';
+   caption.textContent='실사 영상 · 재생 완료';
+   updateControls();
+  },{once:true});
+  vid.addEventListener('error',()=>{
+   if(vid!==video)return;
+   silence();
+   stage.dataset.cinema='approved-still';
+   caption.textContent='영상 재생 불가 · 실사 사진 표시';
+   updateControls();
+  },{once:true});
   vid.src=new URL(entry.motion,document.baseURI).href;
   layer.append(vid);
   video=vid;
+  updateControls();
   const result=vid.play();
-  if(result&&typeof result.catch==='function')result.catch(()=>{if(vid===video)silence();});
+  if(result&&typeof result.catch==='function')result.catch(()=>{
+   if(vid!==video)return;
+   silence();
+   stage.dataset.cinema='approved-still';
+   caption.textContent='자동 재생 차단 · 다시 보기 가능';
+   updateControls();
+  });
  }
  function prefetchNext(scene){
   if(dataSaver()||reduce?.matches)return;
@@ -132,6 +173,8 @@
   if(!scene||!manifest.catalog[scene.id])return;
   const epoch=++generation;
   currentId=scene.id;
+  currentEntry=manifest.catalog[scene.id];
+  wantsSound=false;
   silence();
   layer.replaceChildren();
   stage.classList.remove('cinema-real');
@@ -147,12 +190,33 @@
    stage.dataset.cinema='approved-still';
    tableau.hidden=true;
    caption.textContent='고유 실사 장면';
+   updateControls();
    maybeVideo(entry,epoch);
    prefetchNext(scene);
   }catch(_){
    if(epoch===generation)fallback(scene);
   }
  }
+ replayBtn.addEventListener('click',()=>{
+  if(!currentEntry||!videoAllowed(currentEntry)||stage.dataset.cinema==='fallback'||!visible)return;
+  if(!video){maybeVideo(currentEntry,generation,true);return;}
+  try{video.currentTime=0;}catch(_){/* media may still be loading */ }
+  const result=video.play();
+  if(result&&typeof result.catch==='function')result.catch(()=>{caption.textContent='영상 재생 불가 · 실사 사진 표시';});
+ });
+ soundBtn.addEventListener('click',()=>{
+  if(!video)return;
+  video.muted=!video.muted;
+  wantsSound=!video.muted;
+  updateControls();
+ });
+ skipBtn.addEventListener('click',()=>{
+  if(!video)return;
+  silence();
+  stage.dataset.cinema='approved-still';
+  caption.textContent='영상 건너뜀 · 실사 사진 표시';
+  updateControls();
+ });
  function stopIfHidden(){
   if(document.hidden||!visible)video?.pause();
  }
@@ -169,7 +233,9 @@
    scene:currentId,
    visual:stage.dataset.cinema,
    approvedStills:Object.values(manifest.catalog).filter(certified).length,
-   videoPlaying:!!video&&!video.paused
+   videoPlaying:!!video&&!video.paused,
+   videoAvailable:!!currentEntry&&videoAllowed(currentEntry),
+   soundEnabled:!!video&&!video.muted
   })
  });
 })();
