@@ -50,13 +50,17 @@
   'c14-a':'한지유가 송출 패널 앞에서 오디오를 검수하는 행동',
   'c14-o':'최종 방송의 송출등이 켜지는 3초 장면'
  };
+ const RELEASED_STILLS=Object.freeze({
+  p0:Object.freeze({image:'./media/scenes/p0.webp',sha256:'30bbb5b84628bad541a00dc81030c3618c6e553688c63b0674ecf0956a078118'})
+ });
  const catalog=Object.fromEntries(ids.map(id=>{
   const ref=shots[id]||{};
+  const released=RELEASED_STILLS[id];
   return [id,Object.freeze({
    id,
-   approved:false,
-   image:null,
-   sha256:null,
+   approved:!!released,
+   image:released?.image||null,
+   sha256:released?.sha256||null,
    motion:null,
    motionSha256:null,
    title:ref.title||story.scenes[id].title,
@@ -70,8 +74,8 @@
  window.LastSignalMediaManifest=Object.freeze({
   version:1,
   protocol:'reboot-g2-scene-id-v1',
-  generatedStillCount:0,
-  approvedStillCount:0,
+  generatedStillCount:Object.keys(RELEASED_STILLS).length,
+  approvedStillCount:Object.keys(RELEASED_STILLS).length,
   approvedMotionCount:0,
   sceneCount:ids.length,
   catalog:Object.freeze(catalog),
