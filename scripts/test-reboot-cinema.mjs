@@ -25,13 +25,19 @@ const ids=Object.keys(book.scenes);
 assert.equal(ids.length,79);
 assert.equal(Object.keys(media.catalog).length,79,'every story node has a media contract');
 assert.equal(media.sceneCount,79);
-assert.equal(media.approvedStillCount,0,'no fake completed photographs');
+assert.equal(media.approvedStillCount,1,'exactly the real P0 still is published');
 assert.equal(media.approvedMotionCount,0,'no fake completed action videos');
 for(const id of ids){
  const shot=media.catalog[id];
  assert.equal(shot.id,id);
- assert.equal(shot.approved,false,'pending images must not be presented as approved');
- assert.equal(shot.image,null,'missing still must not claim a URL');
+ if(id==='p0'){
+  assert.equal(shot.approved,true,'committed P0 must be in manifest');
+  assert.equal(shot.image,'./media/scenes/p0.webp');
+  assert.equal(shot.sha256,'30bbb5b84628bad541a00dc81030c3618c6e553688c63b0674ecf0956a078118');
+ }else{
+  assert.equal(shot.approved,false,'pending images must not be presented as approved');
+  assert.equal(shot.image,null,'missing still must not claim a URL');
+ }
  assert.equal(shot.motion,null,'missing motion must not claim a file');
 }
 assert.equal(new Set(['p0','p1','p2','p3'].map(id=>media.catalog[id].fallback)).size,4,'independent prologue compositions');
@@ -71,7 +77,7 @@ function createNode(tag='div'){
   dispatch(type){(listeners[type]||[]).forEach(fn=>fn());}
  };
 }
-function environment({approved=[],autoLoad=true,motion=false,reduced=false,saveData=false}={}){
+function environment({approved=[],disabled=[],autoLoad=true,motion=false,reduced=false,saveData=false}={}){
  const stage=createNode('figure');
  const layer=createNode('div');
  const tableau=createNode('div');
@@ -92,6 +98,7 @@ function environment({approved=[],autoLoad=true,motion=false,reduced=false,saveD
   completeLoad(){this.naturalWidth=1536;this.naturalHeight=864;this.onload?.();}
  }
  const newCatalog={...media.catalog};
+ for(const id of disabled){newCatalog[id]={...newCatalog[id],approved:false,image:null,sha256:null};}
  for(const id of approved){
   newCatalog[id]={...newCatalog[id],approved:true,image:'./media/scenes/'+id+'.webp',sha256:'a'.repeat(64),
    ...(motion?{motion:'./media/motion/'+id+'.webm',motionApproved:true,motionSha256:'b'.repeat(64)}:{})};
@@ -117,7 +124,7 @@ function environment({approved=[],autoLoad=true,motion=false,reduced=false,saveD
  vm.runInContext(files.cinema,ctx);
  return {api:ctx.window.LastSignalCinema,book,stage,layer,tableau,caption,controls,replay,sound,skip,images,requested,ctx,events};
 }
-const fallback=environment();
+const fallback=environment({disabled:['p0']});
 for(const id of ['p0','p1','p2','p3']){
  await fallback.api.show(book.scenes[id]);
  assert.equal(fallback.stage.dataset.cinema,'fallback','no false success: '+id);
