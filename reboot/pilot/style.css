@@ -129,3 +129,20 @@ button:disabled{opacity:.5;cursor:wait}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{transition:none!important;animation:none!important}
 }
+
+/* Minimal single-surface dialogue refinements (no inset dashboard). */
+.choice-cancel{border:0;background:transparent;color:#c3c2bd;min-height:34px;padding:7px 9px;text-align:left;font-size:12px}
+.choice-cancel:hover{background:#ffffff18;color:#fff}
+.narrative{filter:none}
+.narrative::before{background:linear-gradient(90deg,#060a12a6,transparent 98%)}
+.dialogue-copy{overscroll-behavior:contain}
+.dialogue-copy p{max-width:62ch}
+.choice-zone{box-shadow:0 1px 0 #ffffff21 inset}
+.talk-trigger{font-weight:550;border:1px solid #c6b49a70;background:#0a1019db;color:#edc7a5}
+.media-hint{color:#ffffff8f}
+@media(max-width:650px){
+ .choice-zone{margin-top:10px}
+ .narrative{max-height:73dvh}
+ .choices{max-height:34dvh}
+ .choice-cancel{width:100%}
+}
