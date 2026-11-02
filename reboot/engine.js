@@ -252,5 +252,17 @@
   }catch(err){window.alert('불러오기 실패: '+err.message);}
   finally{e.target.value='';}
  });
+ const filmModeBtn=$('filmModeBtn');
+ const filmKey='last_signal_reboot_film_mode_v1';
+ function setFilmMode(enabled){
+  document.body.classList.toggle('film-mode',enabled);
+  filmModeBtn.setAttribute('aria-pressed',String(enabled));
+  filmModeBtn.textContent=enabled?'영화 모드 켜짐':'영화 모드 꺼짐';
+  try{localStorage.setItem(filmKey,enabled?'on':'off');}catch(_){/* private storage */ }
+ }
+ let initialFilmMode=true;
+ try{initialFilmMode=localStorage.getItem(filmKey)!=='off';}catch(_){/* private storage */ }
+ setFilmMode(initialFilmMode);
+ filmModeBtn.addEventListener('click',()=>setFilmMode(!document.body.classList.contains('film-mode')));
  save();render();
 })();
