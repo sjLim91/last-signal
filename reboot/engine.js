@@ -88,6 +88,7 @@
   ui.art.className='visual mood-'+scene.mood;
   ui.artName.textContent=moodName(scene.mood);
   ui.art.setAttribute('aria-label',scene.location+' · 영화적 분위기 배경');
+  window.LastSignalCinema?.show(scene);
   ui.text.replaceChildren();
   scene.text.split(/\n\s*\n/).forEach((paragraph,i)=>{
    ui.text.append(element('p',i===0?'lead':'',paragraph));
@@ -148,7 +149,7 @@
   render();
   // Only one scene is displayed, so choices never get buried under a growing chat log.
   // The user's scroll is preserved while a decision is made; provide a visible start to each new scene.
-  $('gameMain').scrollIntoView({behavior:'instant',block:'start'});
+  ui.art.scrollIntoView({behavior:'instant',block:'start'});
   choosing=false;
  }
  function renderEnding(scene){
