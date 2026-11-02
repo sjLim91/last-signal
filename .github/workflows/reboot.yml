@@ -4,6 +4,7 @@ on:
     paths:
       - 'reboot/**'
       - 'scripts/test-reboot.mjs'
+      - 'scripts/test-reboot-cinema.mjs'
       - '.github/workflows/reboot.yml'
   push:
     branches: [main]
@@ -25,3 +26,5 @@ jobs:
       - run: node --check reboot/story.js
       - run: node --check reboot/engine.js
       - run: node scripts/test-reboot.mjs
+      - run: node --check reboot/cinema.js
+      - run: node scripts/test-reboot-cinema.mjs
