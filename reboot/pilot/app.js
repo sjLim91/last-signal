@@ -38,7 +38,7 @@ function restore(){
 let state=restore();
 let beat=0;
 let mediaEpoch=0,portraitEpoch=0,drawerOpen=false,talkOpen=false,changing=false;
-let portraitCatalog=null,portraitRequest=null;
+let conversationReply=null;
 const cloneState=()=>JSON.parse(JSON.stringify(state));
 function save(){
  state.updated=Date.now();
@@ -55,49 +55,78 @@ function currentBeats(node){
 }
 const isQuoted=text=>text.includes('“')||text.includes('"');
 function showBeat(){
- const node=scene(),beats=currentBeats(node);
+ const node=scene(),person=spec(),beats=currentBeats(node);
  beat=Math.min(beat,beats.length-1);
+ const final=beat===beats.length-1;
+ ui.indicators.replaceChildren();
+ beats.forEach((_,i)=>ui.indicators.append(elem('span',i===beat?'active':'')));
+ ui.title.textContent=node.title;
+ ui.consequence.hidden=true;
+ ui.ending.hidden=true;
+ ui.talkButton.hidden=true;
+ ui.next.textContent='다음 ›';
+ ui.actionFooter.hidden=false;
+ ui.choiceZone.hidden=true;
+ if(talkOpen&&person){
+  ui.speaker.textContent=actors.names[person.actor];
+  ui.copy.replaceChildren(elem('p','',conversationReply||person.lead));
+  ui.copy.scrollTop=0;
+  if(conversationReply){
+   ui.next.hidden=false;
+   ui.next.textContent='이야기 마치기 ›';
+  }else{
+   ui.next.hidden=true;
+   ui.choiceZone.hidden=false;
+   ui.decisionLabel.textContent=actors.names[person.actor]+'에게 어떻게 말할까?';
+   ui.choiceCount.textContent='대화';
+   ui.choices.replaceChildren();
+   person.actions.forEach((action,i)=>{
+    const button=elem('button','choice');
+    button.type='button';
+    button.append(elem('span','choice-no',String(i+1).padStart(2,'0')),
+      elem('span','choice-title',action.label),elem('span','choice-arrow','›'));
+    button.addEventListener('click',()=>pickTalk(i));
+    ui.choices.append(button);
+   });
+   const cancel=elem('button','choice choice-cancel');
+   cancel.type='button';cancel.textContent='대화하지 않고 돌아가기';
+   cancel.addEventListener('click',()=>openTalk(false));
+   ui.choices.append(cancel);
+  }
+  return;
+ }
  const turn=beats[beat];
- const person=spec();
+ ui.speaker.textContent=(person&&(turn.kind==='reaction'||isQuoted(turn.text)))?actors.names[person.actor]:'장면';
  ui.copy.replaceChildren(elem('p','',turn.text));
  ui.copy.scrollTop=0;
- ui.speaker.textContent=(person&&(isQuoted(turn.text)||turn.kind==='reaction'))?actors.names[person.actor]:'장면';
- ui.title.textContent=node.title;
- ui.indicators.replaceChildren();
- for(let i=0;i<beats.length;i++){
-  const dot=elem('span',i===beat?'active':'');
-  ui.indicators.append(dot);
- }
- const final=beat>=beats.length-1;
- const talking=!!talkOpen;
- ui.next.hidden=final||talking;
- ui.choiceZone.hidden=!final||node.ending||talking;
- ui.ending.hidden=!node.ending||!final||talking;
- if(node.ending&&final){
+ ui.next.hidden=final;
+ ui.talkButton.hidden=!person||node.ending||!final;
+ if(person)ui.talkButton.textContent=state.interactions?.[node.id]?
+  '대화 기록 확인 ↗':actors.names[person.actor]+'에게 말 걸기 ↗';
+ ui.choiceZone.hidden=!final||node.ending;
+ ui.ending.hidden=!final||!node.ending;
+ if(final&&!node.ending)showChoices();
+ if(final&&node.ending){
   ui.ending.replaceChildren();
-  const info=elem('p','','당신은 '+state.decisions.length+'번 선택하고 '+state.evidence.length+'개의 단서를 남겼습니다.');
+  ui.ending.append(elem('p','','당신은 '+state.decisions.length+'번 선택하고 '+state.evidence.length+'개의 단서를 남겼습니다.'));
   const replay=elem('button','next-beat','다른 선택으로 다시 시작 ›');
   replay.type='button';replay.addEventListener('click',restart);
-  ui.ending.append(info,replay);
+  ui.ending.append(replay);
  }
- ui.talkButton.hidden=(!person||node.ending||talking);
- if(person&&state.interactions?.[node.id])ui.talkButton.textContent='대화 기록 보기 ↗';
- else if(person)ui.talkButton.textContent=actors.names[person.actor]+'와 대화 ↗';
- const latest=state.decisions.at(-1);
- ui.consequence.hidden=!(latest&&beat===0);
- if(latest&&beat===0)ui.consequence.textContent='선택의 결과 · '+(latest.note||latest.label);
- if(person&&final&&!talking&&!state.interactions?.[node.id]){
+ ui.actionFooter.hidden=final&&(node.ending||!person);
+ if(final&&person){
   ui.consequence.hidden=false;
-  ui.consequence.textContent=person.lead;
- }else if(person&&final&&!talking&&state.interactions?.[node.id]){
+  ui.consequence.textContent=state.interactions?.[node.id]?.line||person.lead;
+ }else if(beat===0&&state.decisions.length){
+  const latest=state.decisions.at(-1);
   ui.consequence.hidden=false;
-  ui.consequence.textContent=state.interactions[node.id].line;
+  ui.consequence.textContent='선택의 결과 · '+(latest.note||latest.label);
  }
- ui.actionFooter.hidden=node.ending&&final;
  ui.choiceCount.textContent=(node.options?.length||0)+'개의 선택';
 }
 function nextBeat(){
- if(drawerOpen||talkOpen)return;
+ if(drawerOpen)return;
+ if(talkOpen){openTalk(false);return;}
  const beats=currentBeats(scene());
  if(beat>=beats.length-1)return;
  beat++;showBeat();
@@ -139,39 +168,8 @@ function setSceneImage(node){
  img.onerror=()=>{if(mediaEpoch===current)ui.still.textContent='실사 로딩 실패 · 분위기 배경';};
  img.src='../media/scenes/'+stillId+'.webp';
 }
-function catalog(){
- if(portraitCatalog)return Promise.resolve(portraitCatalog);
- if(portraitRequest)return portraitRequest;
- portraitRequest=fetch('../../g1/source/approved-reference-webp.json',{cache:'force-cache'})
-  .then(response=>{if(!response.ok)throw Error('Portrait reference missing');return response.json();})
-  .then(data=>{
-   if(data.approvedReferenceCount!==4||!Array.isArray(data.assets))throw Error('Unexpected G1 source');
-   portraitCatalog=new Map(data.assets.filter(a=>
-    typeof a.id==='string'&&typeof a.base64==='string'&&
-    a.base64.length>1000&&/^[a-f0-9]{64}$/.test(a.sha256||'')
-   ).map(a=>[a.id,a]));
-   return portraitCatalog;
-  }).catch(()=>null);
- return portraitRequest;
-}
-async function showPortrait(node){
- const current=++portraitEpoch;
- ui.portraitSlot.classList.remove('active');
- ui.portrait.removeAttribute('src');
- const person=spec();
- if(!person)return;
- const id=actors.faceIDs[person.actor];
- if(!id)return; // The Nagyeong face is not yet verified in G1 sources; do not invent one.
- const list=await catalog();
- if(current!==portraitEpoch||state.scene!==node.id||!list?.has(id))return;
- const item=list.get(id);
- ui.portrait.onload=()=>{
-  if(current!==portraitEpoch||state.scene!==node.id)return;
-  ui.portraitSlot.classList.add('active');
- };
- ui.portrait.onerror=()=>ui.portraitSlot.classList.remove('active');
- ui.portrait.src='data:image/webp;base64,'+item.base64;
-}
+// Character portraits are intentionally not superimposed on background photos.
+// A future scene-specific film still must show each actor naturally in that shot.
 function renderStats(){
  ui.stats.replaceChildren();
  for(const [key,label] of [['proof','증거력'],['credibility','보도 신뢰'],['protection','인물 보호'],['risk','노출 위험']]){
@@ -220,7 +218,6 @@ function render(){
  ui.fill.style.width=(node.part/6*100)+'%';
  renderTrust();
  setSceneImage(node);
- showPortrait(node);
  showChoices();
  showBeat();
  renderDossier();
@@ -231,6 +228,7 @@ function selectChoice(i){
  ui.choices.querySelectorAll('button').forEach(b=>b.disabled=true);
  try{
   state=model.choose(state,i);
+  talkOpen=false;conversationReply=null;
   save();
   render();
  }catch(error){window.alert('선택을 적용하지 못했습니다: '+error.message);}
@@ -240,38 +238,22 @@ function openTalk(value){
  const person=spec();
  if(value&&!person)return;
  talkOpen=!!value;
- ui.talkPanel.hidden=!talkOpen;
- ui.talkChoices.replaceChildren();
- ui.talkReply.hidden=true;
- if(talkOpen){
-  ui.talkLabel.textContent=actors.names[person.actor]+'에게 직접 이야기하기';
-  const saved=state.interactions?.[state.scene];
-  if(saved){
-   ui.talkReply.textContent=actors.names[person.actor]+' · '+saved.line;
-   ui.talkReply.hidden=false;
-  }else{
-   person.actions.forEach((choice,i)=>{
-    const button=elem('button','',''+(i+1)+'. '+choice.label);
-    button.type='button';
-    button.addEventListener('click',()=>pickTalk(i));
-    ui.talkChoices.append(button);
-   });
-  }
+ conversationReply=null;
+ if(talkOpen&&state.interactions?.[state.scene]){
+  conversationReply=state.interactions[state.scene].line;
  }
  showBeat();
- if(talkOpen)ui.talkClose.focus({preventScroll:true});
 }
 function pickTalk(index){
  if(!talkOpen||state.interactions?.[state.scene])return;
  try{
   const result=actors.interact(state,state.scene,index);
-  state=result.state;save();
-  ui.talkChoices.replaceChildren();
-  ui.talkReply.textContent=actors.names[result.actor]+' · '+result.reply;
-  ui.talkReply.hidden=false;
-  ui.talkLabel.textContent='선택에 대한 반응 · '+(result.kind==='probe'?'증거 검증':'신뢰 형성');
+  state=result.state;
+  save();
+  conversationReply=result.reply;
   renderTrust();renderDossier();
- }catch(error){window.alert(error.message);}
+  showBeat();
+ }catch(error){window.alert('대화 적용 실패: '+error.message);}
 }
 function showPanel(show){
  drawerOpen=!!show;
@@ -282,12 +264,11 @@ function showPanel(show){
 }
 function restart(){
  if(!window.confirm('이 에피소드의 선택 기록을 초기화하고 처음부터 플레이할까요?'))return;
- state=model.initial();
- save();openTalk(false);showPanel(false);render();
+ state=model.initial();talkOpen=false;conversationReply=null;
+ save();showPanel(false);render();
 }
 ui.next.addEventListener('click',nextBeat);
 ui.talkButton.addEventListener('click',()=>openTalk(true));
-ui.talkClose.addEventListener('click',()=>openTalk(false));
 $('caseOpen').addEventListener('click',()=>showPanel(true));
 $('caseClose').addEventListener('click',()=>showPanel(false));
 ui.drawer.addEventListener('click',e=>{if(e.target===ui.drawer)showPanel(false);});
@@ -307,7 +288,7 @@ $('importFile').addEventListener('change',async e=>{
   const parsed=JSON.parse(await file.text());
   if(!model.valid(parsed))throw Error('호환되지 않는 에피소드 저장 파일');
   if(!window.confirm('현재 진행상황을 저장 파일로 바꿀까요?'))return;
-  state=parsed;save();showPanel(false);openTalk(false);render();
+  state=parsed;talkOpen=false;conversationReply=null;save();showPanel(false);render();
  }catch(error){window.alert('불러오기 실패: '+error.message);}
  finally{e.target.value='';}
 });
@@ -320,7 +301,8 @@ document.addEventListener('keydown',event=>{
  if(drawerOpen)return;
  if(event.target.closest('button,a,input,textarea,select'))return;
  if(talkOpen){
-  if(/^[12]$/.test(event.key)){event.preventDefault();pickTalk(Number(event.key)-1);}
+  if(!conversationReply&&/^[12]$/.test(event.key)){event.preventDefault();pickTalk(Number(event.key)-1);}
+  else if(conversationReply&&(event.key==='Enter'||event.key===' ')){event.preventDefault();openTalk(false);}
   return;
  }
  if(/^[123]$/.test(event.key)&&!ui.choiceZone.hidden){
