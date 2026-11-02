@@ -1,0 +1,34 @@
+name: Pilot playable thriller QA
+on:
+  pull_request:
+    paths:
+      - 'reboot/pilot/**'
+      - 'scripts/test-lastsignal-pilot.mjs'
+      - '.github/workflows/pilot.yml'
+      - 'reboot/index.html'
+  push:
+    branches: [main]
+    paths:
+      - 'reboot/pilot/**'
+      - 'scripts/test-lastsignal-pilot.mjs'
+      - '.github/workflows/pilot.yml'
+      - 'reboot/index.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  story-graph:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check reboot/pilot/episode.js
+      - run: node --check reboot/pilot/app.js
+      - run: node scripts/test-lastsignal-pilot.mjs
+      - name: Protect previous reboots
+        run: |
+          node scripts/test-reboot.mjs
+          node scripts/test-reboot-cinema.mjs
+          node scripts/verify-reboot-cinema-assets.mjs
