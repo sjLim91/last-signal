@@ -30,6 +30,8 @@ button:disabled{opacity:.5;cursor:wait}
 .stage-vignette{z-index:3;pointer-events:none;background:linear-gradient(180deg,#040911bf 0%,#04091110 18%,#0307110a 35%,#0509126b 58%,#03060bf0 100%),linear-gradient(90deg,#060b15b3,transparent 66%)}
 .portrait-slot{position:absolute;z-index:2;right:2%;bottom:18%;height:min(74dvh,940px);width:min(49vw,670px);display:flex;justify-content:flex-end;align-items:end;opacity:0;transform:translateY(15px);transition:opacity .4s,transform .4s;overflow:hidden;pointer-events:none;mask-image:linear-gradient(180deg,#fff 0%,#fff 75%,transparent 99%);-webkit-mask-image:linear-gradient(180deg,#fff 0%,#fff 75%,transparent 99%)}
 .portrait-slot.active{opacity:.9;transform:translateY(0)}
+/* A reference portrait blends into the scene instead of forming a boxed collage. */
+.portrait-slot{mask-image:radial-gradient(ellipse 74% 67% at 62% 43%,#000 46%,transparent 94%);-webkit-mask-image:radial-gradient(ellipse 74% 67% at 62% 43%,#000 46%,transparent 94%)}
 .portrait-slot img{display:block;height:100%;max-width:100%;object-fit:contain;object-position:center bottom;filter:brightness(.87) saturate(.77) contrast(1.04) drop-shadow(-32px 18px 36px #0008)}
 .game-head{position:absolute;z-index:8;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top) + 19px) clamp(18px,3.7vw,54px) 15px;gap:12px;background:linear-gradient(180deg,#060a12a8,transparent)}
 .head-left,.head-actions{display:flex;align-items:center;gap:12px}.brand-mark{font-size:26px;color:var(--gold);line-height:1}
