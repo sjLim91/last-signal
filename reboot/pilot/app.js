@@ -10,14 +10,13 @@ const KEY='last_signal_pilot_ep0_v2';
 const SCENE_STILLS=Object.freeze({ring:'p0',hidden:'p2',editor_docs:'p1'});
 const $=id=>document.getElementById(id);
 const ui={
- hero:$('hero'),photo:$('heroPhoto'),portraitSlot:$('portraitSlot'),portrait:$('portraitImage'),
+ hero:$('hero'),photo:$('heroPhoto'),
  title:$('sceneTitle'),copy:$('sceneCopy'),clock:$('clock'),place:$('place'),speaker:$('speakerName'),
  trust:$('portraitTrust'),step:$('stepLabel'),progress:$('progress'),fill:$('progressFill'),
  still:$('stillLabel'),next:$('beatNext'),indicators:$('beatIndicators'),
  choiceZone:$('choiceZone'),choices:$('choices'),decisionLabel:$('decisionLabel'),choiceCount:$('choiceCount'),
  consequence:$('consequence'),ending:$('endingNote'),actionFooter:document.querySelector('.action-footer'),
- talkButton:$('talkOpen'),talkPanel:$('talkPanel'),talkLabel:$('talkLabel'),
- talkChoices:$('talkChoices'),talkReply:$('talkReply'),talkClose:$('talkClose'),
+ talkButton:$('talkOpen'),
  drawer:$('casePanel'),evidence:$('evidenceList'),relations:$('relations'),log:$('decisionLog'),
  trail:$('trail'),stats:$('stats'),counter:$('evidenceCounter'),
  fullscreen:$('fullScreen')
@@ -37,7 +36,7 @@ function restore(){
 }
 let state=restore();
 let beat=0;
-let mediaEpoch=0,portraitEpoch=0,drawerOpen=false,talkOpen=false,changing=false;
+let mediaEpoch=0,drawerOpen=false,talkOpen=false,changing=false;
 let conversationReply=null;
 const cloneState=()=>JSON.parse(JSON.stringify(state));
 function save(){
@@ -76,6 +75,7 @@ function showBeat(){
    ui.next.textContent='이야기 마치기 ›';
   }else{
    ui.next.hidden=true;
+   ui.actionFooter.hidden=true;
    ui.choiceZone.hidden=false;
    ui.decisionLabel.textContent=actors.names[person.actor]+'에게 어떻게 말할까?';
    ui.choiceCount.textContent='대화';
