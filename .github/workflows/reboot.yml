@@ -5,6 +5,7 @@ on:
       - 'reboot/**'
       - 'scripts/test-reboot.mjs'
       - 'scripts/test-reboot-cinema.mjs'
+      - 'scripts/verify-reboot-cinema-assets.mjs'
       - '.github/workflows/reboot.yml'
   push:
     branches: [main]
@@ -28,3 +29,6 @@ jobs:
       - run: node scripts/test-reboot.mjs
       - run: node --check reboot/cinema.js
       - run: node scripts/test-reboot-cinema.mjs
+      - run: node scripts/verify-reboot-cinema-assets.mjs
+      - name: Explain why G2 photography is not yet approved
+        run: echo 'Strict acceptance requires node scripts/verify-reboot-cinema-assets.mjs --strict-prologue and four independently approved WebP photos.'
