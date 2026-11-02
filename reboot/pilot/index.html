@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080f19">
+<meta name="description" content="라스트 시그널: 죽은 사람의 전화. 여객선 참사 이후, 당신의 선택이 증거와 사람의 운명을 바꾸는 인터랙티브 범죄 스릴러.">
+<title>라스트 시그널 | 죽은 사람의 전화</title>
+<link rel="stylesheet" href="./style.css">
+<script defer src="./episode.js"></script>
+<script defer src="./app.js"></script>
+</head>
+<body>
+<div class="layout">
+<header class="masthead">
+  <a class="identity" href="../" aria-label="기존 라스트시그널 게임으로 이동">
+    <span class="logo">◎</span>
+    <span><small>LAST SIGNAL — INTERACTIVE CRIME THRILLER</small><strong>라스트 시그널</strong></span>
+  </a>
+  <div class="header-right">
+    <span class="preview">새로운 첫 장 · 플레이 버전</span>
+    <button id="caseOpen" type="button" aria-haspopup="dialog" aria-controls="casePanel">사건 파일 <span id="evidenceCounter">0</span></button>
+  </div>
+</header>
+
+<main id="game" tabindex="-1">
+  <div class="chapter-strip">
+    <span>EPISODE 00</span>
+    <span id="stepLabel">프롤로그 / 02:17</span>
+    <div class="progress" role="progressbar" aria-label="에피소드 단계" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="progress"><i id="progressFill"></i></div>
+  </div>
+  <div class="hero" id="hero">
+    <div class="hero-photo" id="heroPhoto"></div>
+    <div class="hero-fog"></div>
+    <div class="hero-scan"></div>
+    <div class="hero-wave" id="heroWave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="scene-stamp">
+      <span id="place">서울 · 방송국 탐사보도국</span>
+      <time id="clock">02:17</time>
+    </div>
+    <span class="still-label" id="stillLabel">P0 독립 실사 컷 · 장면 연출</span>
+  </div>
+  <section class="story" aria-label="스토리 장면">
+    <div class="section-kicker"><span class="red-dot"></span><span id="episodeName">EPISODE 00 / 죽은 사람의 전화</span></div>
+    <h1 id="sceneTitle" tabindex="-1">죽은 사람의 전화</h1>
+    <div id="sceneCopy" class="copy" aria-live="polite"></div>
+    <aside id="consequence" class="consequence" aria-label="직전 선택 결과" hidden></aside>
+    <div class="choice-zone" id="choiceZone">
+      <div class="choice-top"><span id="decisionLabel">당신의 다음 선택</span><span id="choiceCount"></span></div>
+      <div id="choices" class="choices"></div>
+    </div>
+    <section class="ending-note" id="endingNote" hidden></section>
+  </section>
+  <section class="foot-area">
+    <div class="route-title"><h2>당신이 남긴 선택</h2><span>실제 지나온 경로</span></div>
+    <div id="trail" class="trail" aria-label="결정 경로"></div>
+    <div id="stats" class="statline"></div>
+    <div class="foot-actions">
+      <button type="button" id="restart" class="outline">처음부터 다시</button>
+      <a href="../" class="textlink">기존 79장면 버전</a>
+    </div>
+    <p class="fiction">모든 인물·기관·여객선은 허구입니다. 실제 참사와 무관하며, 선택 기록은 이 브라우저에만 저장됩니다.</p>
+  </section>
+</main>
+</div>
+<div id="casePanel" class="scrim" role="dialog" aria-modal="true" aria-labelledby="caseTitle" hidden>
+ <div class="drawer">
+   <div class="drawer-head"><div><small>EVIDENCE / PRIVATE</small><h2 id="caseTitle">사건 파일</h2></div><button type="button" id="caseClose" aria-label="사건 파일 닫기">✕</button></div>
+   <p>은파호 · 2027년 9월 18일. 탑승객 412명, 생존 226명, 사망·실종 186명. 자료의 입수와 보호 선택은 실제 결말에 영향을 줍니다.</p>
+   <section><h3>확보한 증거</h3><ul id="evidenceList" class="dossier-list"></ul></section>
+   <section><h3>사람과의 관계</h3><ul id="relations" class="dossier-list"></ul></section>
+   <section><h3>최근 결정과 여파</h3><ol id="decisionLog" class="dossier-list"></ol></section>
+   <div class="drawer-actions"><button id="exportSave" type="button">기록 내보내기</button><button id="importSave" type="button">기록 불러오기</button><input id="importFile" type="file" accept=".json,application/json" hidden></div>
+ </div>
+</div>
+</body>
+</html>
