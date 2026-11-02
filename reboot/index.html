@@ -21,6 +21,7 @@
     <div><small>LAST SIGNAL / INTERACTIVE THRILLER</small><strong>라스트 시그널</strong></div>
    </div>
    <div class="header-actions">
+    <button type="button" class="subtle" id="filmModeBtn" aria-pressed="true">영화 모드 켜짐</button>
     <button type="button" class="subtle" id="boardBtn" aria-controls="dossier" aria-expanded="false">사건 기록 <span aria-hidden="true">▤</span></button>
     <button type="button" class="subtle desktop" id="restartBtn">처음부터</button>
    </div>
@@ -31,12 +32,17 @@
     <div class="progress-meta"><span id="progressText">0 / 14 챕터</span><div class="progress-track"><i id="progressBar"></i></div></div>
    </div>
    <div id="topStats" class="stats" aria-label="현재 취재 상황"></div>
-   <figure id="art" class="visual mood-radio" role="img" aria-label="단절된 교신을 표현한 분위기 배경">
+   <figure id="art" class="visual mood-radio" role="group" aria-label="단절된 교신을 표현한 분위기 배경">
     <div class="horizon"></div><div class="shimmer"></div>
     <div class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div id="cinemaTableau" class="cinema-tableau" aria-hidden="true"></div>
     <div id="cinemaLayer" class="cinema-layer" aria-hidden="true"></div>
     <span id="cinemaMediaStatus" class="cinema-media-status">장면 연출 · 실사 제작 대기</span>
+    <div id="cinemaControls" class="cinema-controls" aria-label="영상 재생 조작" hidden>
+     <button type="button" id="cinemaReplay" aria-label="이 장면 영상 다시 재생">다시 보기</button>
+     <button type="button" id="cinemaSound" aria-pressed="false">소리 켜기</button>
+     <button type="button" id="cinemaSkip">영상 건너뛰기</button>
+    </div>
     <figcaption><span>SCENE / 2028</span><b id="artName">단절된 교신</b></figcaption>
    </figure>
    <article id="scene" class="story">

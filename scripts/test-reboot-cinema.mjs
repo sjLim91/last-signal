@@ -43,6 +43,9 @@ assert.ok(files.html.indexOf('src="./story.js"')<files.html.indexOf('src="./medi
 assert.ok(files.html.indexOf('src="./media/manifest.js"')<files.html.indexOf('src="./cinema.js"'));
 assert.ok(files.html.indexOf('src="./cinema.js"')<files.html.indexOf('src="./engine.js"'));
 assert.ok(files.html.includes('id="cinemaLayer"')&&files.html.includes('id="cinemaTableau"'));
+assert.ok(files.html.includes('id="cinemaReplay"')&&files.html.includes('id="cinemaSound"')&&files.html.includes('id="cinemaSkip"'));
+assert.ok(files.html.includes('id="filmModeBtn"'));
+assert.ok(files.engine.includes('last_signal_reboot_film_mode_v1'));
 assert.ok(files.engine.includes('LastSignalCinema?.show(scene)'));
 assert.ok(files.css.includes('cinema-memorial')&&files.css.includes('cinema-rooftop'));
 
@@ -73,7 +76,10 @@ function environment({approved=[],autoLoad=true,motion=false,reduced=false,saveD
  const layer=createNode('div');
  const tableau=createNode('div');
  const caption=createNode('span');
- const nodes={art:stage,cinemaLayer:layer,cinemaTableau:tableau,cinemaMediaStatus:caption};
+ const controls=createNode('div'),replay=createNode('button'),sound=createNode('button'),skip=createNode('button');
+ controls.hidden=true;
+ const nodes={art:stage,cinemaLayer:layer,cinemaTableau:tableau,cinemaMediaStatus:caption,
+  cinemaControls:controls,cinemaReplay:replay,cinemaSound:sound,cinemaSkip:skip};
  const images=[],requested=[];
  const events={};
  class FakeImage {
@@ -109,7 +115,7 @@ function environment({approved=[],autoLoad=true,motion=false,reduced=false,saveD
  };
  vm.createContext(ctx);
  vm.runInContext(files.cinema,ctx);
- return {api:ctx.window.LastSignalCinema,book,stage,layer,tableau,caption,images,requested,ctx,events};
+ return {api:ctx.window.LastSignalCinema,book,stage,layer,tableau,caption,controls,replay,sound,skip,images,requested,ctx,events};
 }
 const fallback=environment();
 for(const id of ['p0','p1','p2','p3']){
@@ -150,11 +156,27 @@ const video=environment({approved:['p0'],motion:true});
 await video.api.show(book.scenes.p0);
 assert.equal(video.layer.children.length,2,'approved still + one valid video');
 assert.equal(video.api.status().videoPlaying,true,'one-shot clip started');
+assert.equal(video.controls.hidden,false,'approved motion presents playback controls');
+assert.equal(video.api.status().soundEnabled,false,'silent autoplay default');
+video.sound.dispatch('click');
+assert.equal(video.api.status().soundEnabled,true,'sound requires explicit user tap');
+video.skip.dispatch('click');
+assert.equal(video.api.status().videoPlaying,false,'skip stops video without changing story');
+assert.equal(video.stage.dataset.cinema,'approved-still','skip reveals only this scene original still');
+video.replay.dispatch('click');
+assert.equal(video.api.status().videoPlaying,true,'replay works after skip');
+assert.equal(video.api.status().soundEnabled,true,'sound can be retained on explicit replay');
+video.layer.children[video.layer.children.length-1].dispatch('ended');
+assert.equal(video.api.status().videoPlaying,false,'natural end releases active video');
+video.replay.dispatch('click');
+assert.equal(video.api.status().videoPlaying,true,'replay works after natural end');
 video.ctx.document.hidden=true;
 (video.events.visibilitychange||[]).forEach(fn=>fn());
 assert.equal(video.api.status().videoPlaying,false,'video pauses when page hidden');
 await video.api.show(book.scenes.p1);
 assert.equal(video.layer.children.length,0,'video is torn down on navigation');
+assert.equal(video.controls.hidden,true,'fallback scene hides motion controls');
+assert.equal(video.api.status().soundEnabled,false,'sound resets at scene boundary');
 
 const reduced=environment({approved:['p0'],motion:true,reduced:true});
 await reduced.api.show(book.scenes.p0);
