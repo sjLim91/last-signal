@@ -12,6 +12,8 @@ on:
     paths:
       - 'reboot/**'
       - 'scripts/test-reboot.mjs'
+      - 'scripts/test-reboot-cinema.mjs'
+      - 'scripts/verify-reboot-cinema-assets.mjs'
       - '.github/workflows/reboot.yml'
   workflow_dispatch:
 permissions:
