@@ -110,7 +110,7 @@ function renderTrail(){
   item.append(elem('b','',model.nodes[id].title));
   ui.trail.append(item);
  });
- if(ui.trail.lastElementChild)ui.trail.lastElementChild.scrollIntoView({block:'nearest',inline:'nearest'});
+ ui.trail.scrollLeft=ui.trail.scrollWidth; // Keep the reading viewport; scroll only the mini-route.
 }
 function renderDossier(){
  ui.evidence.replaceChildren();
